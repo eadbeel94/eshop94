@@ -1,0 +1,25 @@
+#sec_footer{
+  background-color: var(--color2);
+}
+
+#sec_footer footer{
+  background: transparent;
+}
+
+#sec_footer div.col-lg{
+  align-self: center;
+}
+
+#sec_footer div.col-lg a{
+  color: var(--color1)
+}
+
+#sec_footer div.row.text-center {
+  font-family: hcomic1;
+  font-size: 1.3rem;
+}
+
+#sec_footer .col-lg-7{
+  color: var(--color1);
+  font-family: poppins1;
+}

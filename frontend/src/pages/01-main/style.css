@@ -1,0 +1,46 @@
+#sec_slides{
+  text-align: center;
+  top: 55px;
+  z-index: -1;
+  background-color: var(--color2);
+}
+
+#sec_slides div.carousel-item div:nth-child(1){    
+  background-repeat: no-repeat;
+  height: 125px;
+  background-size: 400px;
+}
+
+#sec_slides div.carousel-item div:nth-child(2){
+  background-repeat: no-repeat;
+  height: 150px;
+  background-position: 99% 25%;
+  background-size: 90px;
+}
+
+
+#sec_news {
+  height: 400px; 
+  top: -150px;
+  display: flex;
+  justify-content: center;
+}
+#sec_news > div{
+  background-color: rgba(255,255,255,0.9);
+  border: var(--color2) solid 1px;
+}
+
+
+#sec_clasify{
+  top: -150px;
+}
+
+
+#sec_body1{
+  top: -150px;
+}
+
+
+#sec_about1{
+  top: -150px;
+}

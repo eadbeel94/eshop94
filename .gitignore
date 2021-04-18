@@ -1,0 +1,14 @@
+
+backend/functions/node_modules/
+backend/functions/src/keys/
+backend/functions/package-lock.json
+backend/functions/ui-debug.log
+backend/public/
+backend/ui-debug.log
+frontend/node_modules/
+frontend/src/css/bootstrap.css
+frontend/src/font/
+frontend/src/img/
+frontend/www
+frontend/package-lock.json
+other/

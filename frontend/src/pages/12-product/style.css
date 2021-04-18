@@ -1,0 +1,105 @@
+#sec_body12{
+
+}
+
+#sec_body12 .card{
+  border: black solid 1px;
+  border-radius: 0;
+}
+
+#sec_body12 section.col-md-4 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+#sec_body12 img{
+  overflow: hidden;
+  width: auto;
+}
+
+#sec_body12 section.col-md-4 > div{
+  position: absolute;
+  height: 75%;
+  width: 30%;
+  overflow: hidden;
+}
+
+#sec_body12 section.col-md-4 > div > div{
+  position: absolute;
+  border-style: solid; 
+  background: var(--color1);
+  opacity: 0.9;
+  text-align: center; 
+  font-family: poppins1;  
+  font-size: 20px;
+  overflow: hidden;
+
+  transform: rotate(45deg); 
+  width: 350px; 
+  height: 35px;
+  top: 50px;  
+  right: -105px;
+}
+
+#sec_body12 section.col-md-8{
+  overflow: hidden;
+  color: var(--color1);
+  background: var(--color2);
+}
+
+#sec_body12 .card-body{
+  display: grid;
+  height: 100%;
+}
+
+#sec_body12 .card-body p{
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+#sec_body12 .card-body p:nth-child(1){
+  font-family: hcomic1;
+  font-size: 44px;
+  min-height: 50px;
+}
+#sec_body12 .card-body p:nth-child(2) , #sec_body12 .card-body p:nth-child(3){
+  font-family: hcomic1;
+  font-size: 20px;
+}
+
+#sec_body12 .card-body p:nth-child(4){
+  font-family: poppins1;
+  font-size: 45px;
+  min-height: 50px;
+  font-weight: bold;
+  color: var(--color3);
+}
+#sec_body12 .card-body p:nth-child(5){
+  font-family: poppins1;
+  font-size: 19px;
+}
+#sec_body12 .card-body p:nth-child(6){
+  font-family: poppins1;
+  font-size: 17px;
+}
+#sec_body12 .card-body p:nth-child(7){
+  font-family: poppins1; /*font-family: hcomic1;*/
+  font-size: 20px;
+}
+
+#sec_body12 .card-body div:nth-child(8){
+  align-self: end;
+}
+
+#sec_body12 .card-body div:nth-child(8) .btn{
+  width: 100%;
+  border-radius: 0;
+  overflow: hidden;
+  font-size: 18px;
+}
+
+#sec_body12 .card-body div:nth-child(8) input{
+  text-align: end;
+}
+

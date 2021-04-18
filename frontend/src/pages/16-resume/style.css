@@ -1,0 +1,55 @@
+
+#sec_body16{
+  min-height: 70vh;
+  margin-top: 1rem;
+}
+
+#sec_body16 .card{
+  overflow: hidden; 
+  background-color: var(--color2); 
+  color: var(--color1); 
+}
+
+#sec_body16 .card section:nth-child(1){
+  text-align: center;
+  font-family: poppins1;
+  font-size: 36px;
+}
+#sec_body16 .card section:nth-child(1) p{
+  font-size: 28px;
+}
+
+#sec_body16 .card section:nth-child(1) i{
+  font-size: 36px;
+}
+
+#sec_body16 img{
+  vertical-align: text-bottom;
+  height: auto;
+}
+
+#sec_body16 .table-responsive{
+  padding: 0.25rem;
+  border: var(--color1) solid 1px;
+  background-color: #303030;
+  margin-bottom: 1rem;
+}
+
+#sec_body16 table{
+  color: var(--color1);
+  font-family: poppins1;
+}
+
+#sec_body16 section:nth-child(3){
+  font-family: poppins1;
+  font-size: 20px;
+}
+
+#sec_body16 section:nth-child(3) span:nth-child(2){
+  color: var(--bs-success);
+}
+
+#sec_body16 section:nth-child(3) p:nth-child(4){
+  text-align: center;
+  font-size: 16px;
+}

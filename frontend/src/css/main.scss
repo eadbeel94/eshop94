@@ -1,0 +1,179 @@
+/*------------------------------------ FONTS ------------------------------------*/
+  @font-face {
+    font-family: 'poppins1'; src: url('../font/poppins1.ttf');
+  }
+  @font-face {
+    font-family: 'hcomic1'; src: url('../font/heycomic1.ttf');
+  }
+/*------------------------------------ SPECIAL STYLES ------------------------------------*/
+
+/*
+  ::-webkit-scrollbar {
+    width: 10px; height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #abb6c2;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #df691a;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(52,62,64);
+  }
+  input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none; margin: 0;
+  }
+  input[type=number] {
+    -moz-appearance:textfield;
+  }
+*/
+
+
+/*
+.modalT1 .modal-title, .modalT2 .modal-title{
+  font-family: balo1; font-size: 19px; line-height: 1;
+}
+.modalT1 .modal-body{
+  font-family: poppins1; font-size: 17px; color: white;
+}
+.modalT1 .modal-footer button:nth-child(1){
+  color: var(--white); background-color: var(--info); border-color: var(--info); font-family: balo1; padding-top: 1rem; line-height: 1;
+}
+.modalT1 .modal-footer button:nth-child(1):hover{
+  background-color: #3bb4d8; border-color: #31b0d5;
+}
+.modalT1 .modal-footer button:nth-child(2){
+  color: var(--white); background-color: var(--danger); border-color: var(--danger); font-family: balo1; padding-top: 1rem; line-height: 1;
+}
+.modalT1 .modal-footer button:nth-child(2):hover{
+  background-color: #d23430; border-color: #c9302c;
+}
+*/
+
+/*------------------------------------ HEADER STYLE ------------------------------------*/
+
+:root{
+  --color1: #f8f9fa;
+  --color2: black;
+  --color3: #0dcaf0;
+  --color4: #fd7e14;
+  --color5: #0d6efd;
+  --color6: #303030;
+}
+
+body{
+  background: var(--color1);
+}
+
+.test1{
+  background-color: var(--bs-primary);
+  min-height: 100px;
+}
+
+.test2{
+  background-color: var(--bs-secondary) !important;
+  min-height: 100px;
+}
+
+
+
+
+
+.btn-outline-light2 {
+  color: var(--color1);
+  border-color: var(--color1);
+}
+.btn-outline-light2:hover {
+  color: #000 !important;
+  background-color: var(--color1);
+  border-color: var(--color1);
+}
+.btn-check:focus + .btn-outline-light2, .btn-outline-light2:focus {
+  box-shadow: 0 0 0 0.25rem rgba(248, 249, 250, 0.5);
+}
+.btn-check:checked + .btn-outline-light2, .btn-check:active + .btn-outline-light2, .btn-outline-light2:active, .btn-outline-light2.active, .btn-outline-light2.dropdown-toggle.show {
+  color: #000;
+  background-color: var(--color1);
+  border-color: var(--color1);
+}
+.btn-check:checked + .btn-outline-light2:focus, .btn-check:active + .btn-outline-light2:focus, .btn-outline-light2:active:focus, .btn-outline-light2.active:focus, .btn-outline-light2.dropdown-toggle.show:focus {
+  box-shadow: 0 0 0 0.25rem rgba(248, 249, 250, 0.5);
+}
+.btn-outline-light2:disabled, .btn-outline-light2.disabled {
+  color: var(--color1);
+  background-color: transparent;
+}
+
+
+
+/*
+#sec_navbar {
+  background-position-x: center; background-repeat: no-repeat; min-height: 75px; background-color: black; color: white;
+}
+#sec_navbar a{
+  width: 250px;
+}
+#sec_navbar a.navbar-brand{
+  font-family: hcomic1; font-size: 40px; padding: 0; 
+}
+#sec_navbar .container{
+  font-family: poppins1;
+}
+#sec_navbar .btn-group button{
+  min-width: 72px;
+}
+#sec_navbar .btn-group i{
+  font-size: 24px;
+}
+#sec_navbar a.nav-item{
+  font-size: 1.1rem;
+}
+#sec_navbar .dropdown-menu.dropdown-menu-right{
+  font-size: 1.1rem; width: 200px;
+}
+
+@media (max-width: 1000px) {
+  #sec_navbar div.ml-lg-auto{
+    display: none;
+    visibility: hidden;
+    width: 100%;
+  }
+  .hideshow1 {
+    display: inline !important;
+    visibility: visible !important;
+  }
+  .hideshow1 input{
+    transition: heigth 1s;
+    animation: changeHeigth 1s;
+    animation-fill-mode: forwards;
+  }
+  #sec_navbar section.dropdown{
+    display: inline;
+  }
+}
+@media (min-width: 1001px) {
+  #sec_navbar section.dropdown{
+    display: none;
+  }
+  #sec_navbar div.ml-lg-auto{
+    visibility: hidden;
+  }
+  #sec_navbar input{
+    height: 64px;
+  }
+  .hideshow1 {
+    visibility: visible !important;
+    transition: width 2s;
+    animation: changeWidth 2s;
+    animation-fill-mode: forwards;
+  }
+}
+@keyframes changeWidth {
+  from {  width: 50px; }
+  to {  width: 100%;  }
+}
+@keyframes changeHeigth {
+  from {  height: 0px; }
+  to {  height: 45px;  }
+}
+*/

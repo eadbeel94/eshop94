@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= htmlWebpackPlugin.tags.title %></title>
+  <%= htmlWebpackPlugin.tags.icon %>
+</head>
+<body>
+  
+  <!--------------------- HEADER SECTION --------------------->
+  <%= htmlWebpackPlugin.tags.header %>
+
+  <!--------------------- MAIN SECTION --------------------->
+  <section id="sec_body16">
+    <div class="container">
+      <div class="card p-4" >
+        <section>
+          <span>            
+            Compra realizada con exito <span id="lbl_uname"></span>
+          </span>
+          <span>
+            <img id="spc_uimg" class="pl-3"/>
+          </span>
+          <p class="text-center" >
+            Resumen de compra <i class="bi bi-card-list ps-2"></i> 
+          </p> 
+        </section>
+
+        <section class="table-responsive">
+
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Producto</th>
+                <th scope="col">C/ Unidad</th>
+                <th scope="col">C/ total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                <td>@mdo</td>
+              </tr>
+            </tbody>
+            <!--
+            <tbody id="spc_table">
+            </tbody>
+            -->
+          </table>
+          
+        </section>
+        <section>
+
+          <p>Guarde este codigo en un lugar seguro <i class="bi bi-star-fill"></i></p>
+          <span>Id de transaccion:  </span>
+          <span id="lbl_transid" class="pl-2">
+          </span>
+          <p class="pt-4 mb-0">
+            <i class="bi bi-emoji-smile"></i>
+            Gracias por su compra, sigua contribuyendo a este sistema capitalista con próximas contribuciones
+            <i class="bi bi-emoji-smile"></i>
+          </p>
+
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!--------------------- FOOTER SECTION --------------------->
+  <%= htmlWebpackPlugin.tags.footer %>
+
+</body>
+</html>
