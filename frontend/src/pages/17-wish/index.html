@@ -12,16 +12,65 @@
   <%= htmlWebpackPlugin.tags.header %>
 
   <!--------------------- MAIN SECTION --------------------->
-  <section id="sec_body11">
+  <section id="sec_body17">
     <div class="container">
-      <div class="row">
-
+      <div class="card mainCard">
+        <h3 class="mx-auto mt-2">Mi lista de favoritos</h3>
+        <div id="sec_products" class="row mx-0">
+        </div>
       </div>
     </div>
   </section>
 
   <!--------------------- FOOTER SECTION --------------------->
   <%= htmlWebpackPlugin.tags.footer %>
+  <!--------------------- MODAL SPACE SECTION --------------------->
+  <section id="modals"></section>
+  <!--------------------- TEMPLATE CARD PRODUCT SECTION --------------------->
+  <template id="tmp_card2">
+    <div class="col-lg-10 col-md-12 col-12 px-0 mx-auto">
+      <div class="card p-1">
+        <div class="row mx-0">
+          <section class="col-sm-3 col-12">
+            <img class="card-img m-md-2">
+            <div><div class="crd-label"></div></div>
+          </section>
+          <section class="col-sm-9 col-12">
+            <div class="card-body py-1 px-1">
+              <div class="row">
+                <div class="col-sm-6 col-12 pr-md-0">
+                  <a class="crd-link" data-toggle="tooltip">
+                    <i class="bi bi-arrow-up-right-square pl-2"></i>
+                  </a>
+                </div>
+                <div class="col-sm-6 col-12 pl-0 crd-cost">
+                </div>
+              </div>
+              <p class="card-text m-0">
+              </p>
+              <div class="row mx-0 mt-1">
+                <div class="col-lg-3 col-md-12 col-12 ps-0 crd-bottom"></div>
+                <div class="col-lg-9 col-md-12 col-12 pe-0">
 
+                  <div class="btn-group w-100" role="group">
+                    <button type="button" class="btn btn-success">
+                      Agregar al carrito <i class="bi bi-cart-plus pe-1"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                      Eliminar de la lista <i class="bi bi-bag-x pe-1"></i>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </template>
+  <!--------------------- TEMPLATE MODAL SECTION --------------------->
+  <%= htmlWebpackPlugin.tags.tmodal %>
+  <!--------------------- SCRIPT SECTION --------------------->
+  <%= htmlWebpackPlugin.tags.tscripts %>
 </body>
 </html>

@@ -12,85 +12,70 @@
   <%= htmlWebpackPlugin.tags.header %>
 
   <!--------------------- MAIN SECTION --------------------->
-  <section id="sec_body12" style="height: 82vh;">
-    <div class="container h-100">
-      <div class="d-flex align-items-center h-100">
-
-        <section class="card">
-          <div class="row mx-0">
-            <section class="col-md-4">
-              <img src="https://storage.googleapis.com/la-liga-coleccionable.appspot.com/comic/325/5E6FC2CC.jpg" class="card-img-top p-2" alt="...">
-              <div>
-                <div>DISPONIBLE</div>
-              </div>
-              
-            </section>
-            <section class="col-md-8">
-              <div class="card-body py-2"> 
-                <p class="card-title">
-                  BATMAN VOL 3 #103 COVER A JORGE JIMENEZ 
-                </p>
-                <p class="card-text">
-                  Edicion: <ins id="lbl_brand4"> Single Issue</ins> 
-                </p>  
-                <p class="card-text">
-                  Año: <ins id="lbl_model4">2020</ins> 
-                </p>  
-                <p class="card-text">
-                  $ <span id="lbl_value4">
-                  92,00
-                  </span>
-                </p>
-                <p class="card-text">
-                  <span >Descripcion: </span>
-                </p>
-                <p id="lbl_descr4" class="card-text">
-                  Batman y Ghost-Maker se enfrentan cara a cara para decidir cuál de ellos seguirá siendo el héroe de Gotham City. La ciudad está cambiando más rápido que nunca después de "The Joker War", y este cambio conlleva un aumento de los peligros a medida que los ciudadanos de Gotham exigen que Punchline sea liberado de la prisión. Además, ¡Harley Quinn enfrenta una muerte segura a manos de Clownhunter!
-                </p>
-                <p class="card-text">
-                  Disponibles: 
-                  <span id="lbl_quant4">
-                  4
-                  </span> 
-                </p> 
-                <div id="spc_btnpy4" class="row my-4">
-                  <div class="col-lg-4 col-10 py-1">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <button id="btn_plus4" class="btn btn-success" type="button">
-                          <i id="btn_plus4" class="bi bi-plus-circle"></i>
-                        </button>
-                      </div>
-                      <input id="inp_value4" type="number" class="form-control text-right" value="1">
-                      <div class="input-group-append">
-                        <button id="btn_minus4" class="btn btn-danger" type="button">
-                          <i id="btn_minus4" class="bi bi-dash-circle"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-10 py-1">
-                    <button id="btn_wish" type="button" class="btn btn-outline-light2 btn-block p-1">
-                      Agregar a favoritos <i id="btn_wish" class="bi bi-hand-thumbs-up ps-1"></i>
-                    </button>
-                  </div>
-                  <div class="col-lg-4 col-10 py-1">
-                    <button id="btn_send" type="button" class="btn btn-success btn-block p-1">
-                      Agregar al carrito <i id="btn_send" class="bi bi-cart-plus ps-1"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-        </section>
-
-      </div>
+  <section id="sec_body12">
+    <div class="container my-2">
     </div>
   </section>
 
   <!--------------------- FOOTER SECTION --------------------->
   <%= htmlWebpackPlugin.tags.footer %>
+  <!--------------------- MODAL SPACE SECTION --------------------->
+  <section id="modals"></section>
+  <!--------------------- TEMPLATE CARD PRODUCT SECTION --------------------->
+  <template id="tmp_card2">
+    <section class="card">
+      <div class="row mx-0">
+        <section class="col-md-4">
+          <img class="card-img-top p-2" alt="...">
+          <div>
+            <div class="crd-label"></div>
+          </div>
+        </section>
+        <section class="col-md-8">
+          <div class="card-body py-2"> 
+            <p class="card-title"></p>
+            <p class="card-text crd-edition"></p>  
+            <p class="card-text crd-year"></p>  
+            <p class="card-text crd-cost"></p>
+            <p class="card-text">Descripcion:</p>
+            <p class="card-text crd-desc"></p>
+            <p class="card-text crd-disp"></p> 
 
+            <div class="row my-4">
+              <div class="col-lg-4 col-10 py-1">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <button class="btn btn-success" type="button">
+                      <i class="bi bi-plus-circle"></i>
+                    </button>
+                  </div>
+                  <input type="number" class="form-control text-right" value="1">
+                  <div class="input-group-append">
+                    <button class="btn btn-danger" type="button">
+                      <i class="bi bi-dash-circle"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-10 py-1">
+                <button type="button" class="btn btn-outline-light2">
+                  Agregar a favoritos <i class="bi bi-hand-thumbs-up ps-1"></i>
+                </button>
+              </div>
+              <div class="col-lg-4 col-10 py-1">
+                <button type="button" class="btn btn-outline-info">
+                  Agregar al carrito <i class="bi bi-cart-plus ps-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </template>
+  <!--------------------- TEMPLATE MODAL SECTION --------------------->
+  <%= htmlWebpackPlugin.tags.tmodal %>
+  <!--------------------- SCRIPT SECTION --------------------->
+  <%= htmlWebpackPlugin.tags.tscripts %>
 </body>
 </html>

@@ -53,7 +53,7 @@
   border: transparent 5px solid;
 }
 
-#sec_products section.col-sm-3 > div > div{
+#sec_products .crd-label{
   position: absolute;
   border-style: solid;
   background: var(--color1);
@@ -67,6 +67,7 @@
   height: 35px;
   top: 40px;
   right: -120px;
+  text-transform: uppercase;
 }
 
 /*------------ title side  ------------*/
@@ -82,19 +83,20 @@
 
 /*------------ body side  ------------*/
 
-#sec_products .card-body div:nth-child(2){
+#sec_products .crd-cost{
   overflow: hidden;
   font-family: poppins1;
   font-size: 32px;
   text-align: end;
 }
 
-#sec_products .card-body .row a{
+#sec_products .crd-link{
   overflow: hidden;
   color: var(--color3);
   font-family: hcomic1;
   font-size: 24px;
   text-decoration: unset;
+  text-transform: uppercase;
 }
 
 #sec_products .card-body p{
@@ -112,10 +114,11 @@
   font-size: 17px;
 }
 
-#sec_products .card-body div:nth-child(3) div:nth-child(1){
+#sec_products .bottom{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-transform: capitalize;
   /*align-items: center;
   display: flex;*/
 }
@@ -160,12 +163,16 @@
   justify-content: space-between!important;
 }
 
-/*------------ season side  ------------*/
+/*------------ seasson side  ------------*/
 
 #sec_login div:nth-child(1){
   background: var(--color2);
   color: var(--color1);
   font-family: poppins1;
+}
+
+#sec_login div:nth-child(1) p{
+  margin: 0;
 }
 
 #sec_login div:nth-child(2){
@@ -174,9 +181,10 @@
   font-family: poppins1;
 }
 
-#sec_login div:nth-child(2) .btn{
+#sec_login .btn-group .btn{
   border-radius: 0;
   font-family: poppins1;
+  width: 50%;
 }
 
 #sec_login div:nth-child(2) span{
@@ -197,7 +205,8 @@
 }
 
 #sec_login div:nth-child(2) section:nth-child(3) button{
-  font-size: 18px; width: 100%;
+  font-size: 18px; 
+  width: 100%;
 }
 
 /*------------ second collapse side  ------------*/
@@ -252,4 +261,24 @@
 #sec_login div:nth-child(5) a{
   color: var(--color3);
   text-decoration: unset;
+}
+
+
+
+
+
+
+
+.emptyBox{
+  height: 80vh;
+  align-items: center;
+  justify-content: center;
+
+  font-family: poppins1; 
+  font-size: 3.5rem; 
+  overflow: hidden;
+}
+
+.emptyBox div{
+  text-align: center;
 }

@@ -1,5 +1,5 @@
 #sec_body12{
-
+  min-height: 70vh;
 }
 
 #sec_body12 .card{
@@ -14,8 +14,9 @@
 }
 
 #sec_body12 img{
-  overflow: hidden;
-  width: auto;
+  height: fit-content;
+  display: flex;
+  align-self: center;
 }
 
 #sec_body12 section.col-md-4 > div{
@@ -25,7 +26,7 @@
   overflow: hidden;
 }
 
-#sec_body12 section.col-md-4 > div > div{
+#sec_body12 .crd-label{
   position: absolute;
   border-style: solid; 
   background: var(--color1);
@@ -40,6 +41,7 @@
   height: 35px;
   top: 50px;  
   right: -105px;
+  text-transform: uppercase;
 }
 
 #sec_body12 section.col-md-8{
@@ -58,14 +60,16 @@
   margin-bottom: 0;
 }
 
-#sec_body12 .card-body p:nth-child(1){
+#sec_body12 .card-title{
   font-family: hcomic1;
-  font-size: 44px;
+  font-size: 35px;
   min-height: 50px;
+  text-transform: uppercase;
 }
-#sec_body12 .card-body p:nth-child(2) , #sec_body12 .card-body p:nth-child(3){
+#sec_body12 .crd-edition , #sec_body12 .crd-year{
   font-family: hcomic1;
   font-size: 20px;
+  text-transform: capitalize;
 }
 
 #sec_body12 .card-body p:nth-child(4){
@@ -79,11 +83,12 @@
   font-family: poppins1;
   font-size: 19px;
 }
-#sec_body12 .card-body p:nth-child(6){
+#sec_body12 .crd-desc{
   font-family: poppins1;
   font-size: 17px;
+  height: 100px;
 }
-#sec_body12 .card-body p:nth-child(7){
+#sec_body12 .crd-disp{
   font-family: poppins1; /*font-family: hcomic1;*/
   font-size: 20px;
 }

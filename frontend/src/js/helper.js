@@ -82,10 +82,12 @@ const fillNavbar= async (
     $btn_logout.disabled= false;
     try {
       const res= await fetch(`${IP}/APIshop/first/getCart?id=${ userInfo.uid }`);
-      if( !res.ok ) throw { status: res.status , message: `${ res.statusText }` };
       const json= await res.json();
+
+      if( !res.ok ) throw { status: res.status , message: `${ res.statusText }` };
       if( !json.status ) throw { status: json.status , message: `${ json.data }` };
       const { cart , wish }= json.data;
+      
       $lbl_wish.textContent= wish;
       $lbl_cart.textContent= cart;
     } catch (err) { modalShow( Modal , "modals" , "tmp_modal" , getError(err) ); console.log( 100 , err ) };
@@ -96,7 +98,8 @@ const fillNavbar= async (
     $btn_wish.onclick= commonModal;
     $btn_cart.onclick= commonModal;
   }
-  $btn_search.onclick= () => $inp_search.value.length > 3 && window.open(`/pages/articles/?fr=s&cr=${ $inp_search.value }`,'_self');
+  $btn_search.onclick= () => $inp_search.value.length > 3 && window.open(`/pages/articles/?fr=s&cr=${ encodeURIComponent($inp_search.value.toUpperCase().trim()) }`,'_self');
+  $inp_search.onkeyup= (ev) => ev.key === 'Enter' && ev.target.value.length > 3 && window.open(`/pages/articles/?fr=s&cr=${ encodeURIComponent(ev.target.value.toUpperCase().trim()) }`,'_self');
 };
 
 const genDropTypes= ( dropID="" , list=[] )=>{
@@ -104,7 +107,7 @@ const genDropTypes= ( dropID="" , list=[] )=>{
   const $fragment= d.createDocumentFragment();
   list.forEach( el=>{
     const $li= d.createElement('li');
-    $li.innerHTML= `<a class="dropdown-item" href="/pages/articles/?fr=t&cr=${ el.ord }">${ el.name }</a>`;
+    $li.innerHTML= `<a class="dropdown-item" href="/pages/articles/?fr=t&cr=${ el.type }">${ el.name }</a>`;
     $fragment.appendChild($li);
   });
   $dropdown.appendChild($fragment);
@@ -124,7 +127,7 @@ const genSearchBox= ( spaceID="" , inputID="" , list=[] )=>{
       matchs.forEach( el=> {
         const $a= d.createElement('a'); 
         $a.innerHTML= `<i class="bi bi-search pr-2"></i> ${ el }`;
-        $a.setAttribute('href',`/pages/articles/?fr=s&cr=${ el }`);
+        $a.setAttribute('href',`/pages/articles/?fr=s&cr=${ encodeURIComponent(el.toUpperCase().trim()) }`);
         $a.classList.add('btn');
         $a.classList.add('btn-outline-light');
         $fragment.appendChild($a)
@@ -139,6 +142,8 @@ const genCards= ( spaceID="" , templateID="" , list=[] )=>{
   const $fragment= d.createDocumentFragment();
   const $template= d.getElementById(templateID).content;
   list.forEach( el=>{
+    const enable= String(el.clas).toUpperCase() != "AGOTADO";
+
     $template.querySelector('img').setAttribute('src',el.purl)
     $template.querySelector('.card-title').textContent = `$${el.cost},00`;
     $template.querySelector('a').innerHTML= el.mname + `<i class="bi bi-arrow-up-right-square ps-2"></i>`;
@@ -148,10 +153,11 @@ const genCards= ( spaceID="" , templateID="" , list=[] )=>{
     $template.querySelector('.btn:nth-child(1)').dataset.type= "wish";
     $template.querySelector('.btn:nth-child(1) i').dataset.id= el.id;
     $template.querySelector('.btn:nth-child(1) i').dataset.type= "wish";
-    $template.querySelector('.btn:nth-child(2)').dataset.id= el.id;
-    $template.querySelector('.btn:nth-child(2)').dataset.type= "cart";
-    $template.querySelector('.btn:nth-child(2) i').dataset.id= el.id;
-    $template.querySelector('.btn:nth-child(2) i').dataset.type= "cart";
+    $template.querySelector('.btn:nth-child(2)').disabled= !enable;
+    $template.querySelector('.btn:nth-child(2)').dataset.id= enable ? el.id : "";
+    $template.querySelector('.btn:nth-child(2)').dataset.type= enable ? "cart" : "";
+    $template.querySelector('.btn:nth-child(2) i').dataset.id= enable ? el.id : "";
+    $template.querySelector('.btn:nth-child(2) i').dataset.type= enable ? "cart" : "";
     $template.querySelector('.position-absolute').textContent= el.clas;
 
     $fragment.appendChild( d.importNode( $template , true ) )
@@ -193,4 +199,4 @@ const watchCards= ( spaceID="" , uid , lblWishID="" , lblCartID=""  )=>{
   }
 };
 
-module.exports= { modalShow, spinnerShow, getError, fillNavbar, genDropTypes, genSearchBox, genCards, watchCards };
+module.exports= { modalShow, spinnerShow, getError, fillNavbar, genDropTypes, genSearchBox, genCards, watchCards , IP };

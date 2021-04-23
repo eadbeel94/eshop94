@@ -35,6 +35,12 @@
   top: -150px;
 }
 
+/*
+#sec_clasify a{
+  text-decoration: unset;
+  color: var(--color2);
+}
+*/
 
 #sec_body1{
   top: -150px;

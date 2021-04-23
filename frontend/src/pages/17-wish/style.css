@@ -1,0 +1,136 @@
+#sec_body17 .mainCard{
+  min-height: 70vh;
+  margin: 1rem;
+  border: 0;
+  border-radius: 0;
+}
+
+#sec_body17 .card h3{
+  color: var(--color2);
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 3.5rem; 
+  font-family: hcomic1;
+}
+
+/*------------ General ------------*/
+
+#sec_products .card{
+  border: 0;
+}
+
+#sec_products .card .row{
+  align-items: center;
+  border: var(--color2) 1px solid;
+  color: var(--color1);
+}
+
+#sec_products .card .row section:nth-child(1){
+  text-align: center;
+  padding: 0;
+}
+
+/*------------ Image side  ------------*/
+
+#sec_products .card img{
+  max-height: 200px;
+  overflow: hidden;
+  width: auto;
+  height: auto;
+}
+
+#sec_products section.col-sm-3 > div{
+  position: absolute;
+  top: 0;
+  color: var(--color2);
+  width: 25%;
+  height: 75%;
+  overflow: hidden;
+  border: transparent 5px solid;
+}
+
+#sec_products .crd-label{
+  position: absolute;
+  border-style: solid;
+  background: var(--color1);
+  opacity: 0.9;
+  text-align: center;
+  font-family: poppins1;
+  font-size: 20px;
+  overflow: hidden;
+  transform: rotate( 45deg );
+  width: 350px;
+  height: 35px;
+  top: 40px;
+  right: -120px;
+  text-transform: uppercase;
+}
+
+/*------------ title side  ------------*/
+
+#sec_products .card .row section:nth-child(2){
+  background-color: var(--color2);
+}
+
+#sec_products .card-body .pr-md-0{
+  overflow: hidden;
+  height: 75px;
+}
+
+/*------------ body side  ------------*/
+
+#sec_products .crd-cost{
+  overflow: hidden;
+  font-family: poppins1;
+  font-size: 32px;
+  text-align: end;
+}
+
+#sec_products .crd-link{
+  overflow: hidden;
+  color: var(--color3);
+  font-family: hcomic1;
+  font-size: 24px;
+  text-decoration: unset;
+  text-transform: uppercase;
+}
+
+#sec_products .card-body p{
+  overflow: hidden;
+  height: 100px;
+  font-family: poppins1;
+  font-size: 16px;
+}
+
+/*------------ bottom side  ------------*/
+
+#sec_products .card-body div:nth-child(3){
+  overflow: hidden;
+  font-family: poppins1;
+  font-size: 17px;
+}
+
+#sec_products .bottom{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-transform: capitalize;
+  /*align-items: center;
+  display: flex;*/
+}
+
+#sec_products .card-body div:nth-child(3) .btn{
+  width: 50%;
+}
+
+#sec_products .card-body div:nth-child(3) i{
+  font-size: 20px;
+}
+
+#sec_products .card-body div:nth-child(3) input{
+  text-align: right;
+}
+
+#sec_products .btn-success{
+  visibility: hidden;
+}

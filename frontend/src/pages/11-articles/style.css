@@ -1,3 +1,17 @@
 #sec_body11{
   min-height: 70vh;
 }
+
+.emptyBox{
+  height: 50vh;
+  align-items: center;
+  justify-content: center;
+
+  font-family: poppins1; 
+  font-size: 3.5rem; 
+  overflow: hidden;
+}
+
+.emptyBox div{
+  text-align: center;
+}

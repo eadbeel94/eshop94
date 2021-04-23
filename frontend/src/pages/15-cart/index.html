@@ -9,139 +9,194 @@
   </title>
   <%= htmlWebpackPlugin.tags.icon %>
 </head>
-
 <body>
 
   <!--------------------- HEADER SECTION --------------------->
   <%= htmlWebpackPlugin.tags.header %>
 
-    <!--------------------- MAIN SECTION --------------------->
-    <section id="sec_body15">
-      <div class="container">
+  <!--------------------- MAIN SECTION --------------------->
+  <section id="sec_body15">
+    <div class="container">
+      <div class="card">
+        <div class="row mx-0 p-1">
 
-        <div class="card">
-          <div class="row mx-0 p-1">
+          <h3 class="mx-auto mt-2">Tu carrito de compras</h3>
+          <div class="col-lg-8 col-12">
+            <div id="sec_products" class="row mx-0">
 
-            <h3 class="mx-auto mt-2">Tu carrito de compras</h3>
-            <div class="col-lg-8 col-12">
-              <div id="sec_products" class="row mx-0">
+            
+              <div id="sec_nresults" class="col-md-12 col-12 px-0" style="display: none;">
+                <div class="card emptyBox">
+                  <div>CARRITO <p class="mb-0">VACIO</p></div>
+                  <i class="bi bi-basket3 pt-2"></i>
+                </div>
+              </div>
+            
 
-                <div class="col-lg-12 col-md-12 col-12 px-0">
-                  <div class="card p-1">
-                    <div class="row mx-0">
-                      <section class="col-sm-3 col-12">
-                        <img
-                          src="https://storage.googleapis.com/la-liga-coleccionable.appspot.com/comic/325/8874BEF5.jpg"
-                          class="card-img m-md-2" alt="...">
-                        <div>
-                          <div>DISPONIBLE</div>
-                        </div>
+            </div>
+          </div>
 
-                      </section>
-                      <section class="col-sm-9 col-12">
-                        <div class="card-body py-1 px-1">
-                          <div class="row">
-                            <div class="col-sm-6 col-12 pr-md-0">
-                              <a href="/src/product/?proid=-MMbyqtpC25IhBw-rQWo" data-toggle="tooltip">
-                                DARK NIGHTS DEATH METAL #5 COVER A GREG CAPULLO <i
-                                  class="bi bi-arrow-up-right-square pl-2"></i>
-                              </a>
-                            </div>
-                            <div class="col-sm-6 col-12 pl-0">
-                              $ 115,00
-                            </div>
-                          </div>
-                          <p class="card-text m-0">
-                            El caballero más oscuro ha ganado. Con el poder absoluto en la punta de los dedos del
-                            villano, Wonder Woman y el resto de los héroes de DC no son nada para él. Mientras el
-                            Caballero Más Oscuro vuelve su mirada hacia su verdadero objetivo, rehaciendo el Multiverso
-                            a su imagen, ¿pueden los héroes de la Tierra unirse para hacer una última resistencia?
-                          </p>
-                          <div class="row mx-0 mt-1">
-                            <div class="col-lg-5 col-md-5 col-6 ps-0">Single Issue</div>
-                            <div class="col-lg-5 offset-lg-2 col-md-7 pe-0 col-6">
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                  <button class="btn btn-success" type="button">
-                                    <i class="bi bi-plus-circle"></i>
-                                  </button>
-                                </div>
-                                <input type="number" class="form-control" value="1">
-                                <div class="input-group-append">
-                                  <button class="btn btn-danger" type="button">
-                                    <i class="bi bi-dash-circle"></i>
-                                  </button>
-                                </div>
-                              </div>
+          <div class="col-lg-4 col-12 order-md-2 mb-4 mt-3 px-1">
 
-                              <div class="col-12 mt-1 d-none">
-                                <div class="btn-group btn-block" role="group">
-                                  <button type="button" class="btn btn-success ">
-                                    Agregar al carrito <i class="fas fa-shopping-cart pl-1"></i>
-                                  </button>
-                                  <button type="button" class="btn btn-danger">
-                                    Eliminar de la lista <i class="fas fa-trash-alt pl-1"></i>
-                                  </button>
-                                </div>
-                              </div>
+            <h4 class="mb-3">
+              <span class="text-secondary">Resumen de compra</span>
+              <span id="lbl_qty" class="badge">0</span>
+            </h4>
+            <ul class="list-group mb-3">
+              <li class="list-group-item">
+                <div>
+                  <h6 class="my-0">Subtotal</h6>
+                </div>
+                <span id="lbl_subtotal">$ 0,00</span>
+              </li>
+              <li class="list-group-item">
+                <div>
+                  <h6 class="my-0">Envio</h6>
+                </div>
+                <span id="lbl_deliv">$ 0,00</span>
+              </li>
+              <li class="list-group-item">
+                <span>Total (MXN)</span>
+                <strong id="lbl_total">$ 0,00</strong>
+              </li>
+            </ul>
 
-                            </div>
-                          </div>
-                      </section>
+            <section id="sec_login" style="display: none;">
+              <!--E mail section-->
+              <div class="card text-center pt-3">
+                <p id="lbl_email"></p>
+                <p> iniciado correctamente </p>
+              </div>
+              <!--Dropdown section-->
+              <div class="card pb-2">
+                <span class="text-center mt-2 mb-1">Seleccionar metodo de envio:</span>
+                <!-- Both buttons section -->
+                <div class="btn-group p-2" role="group">
+                  <input type="radio" class="btn-check" type="button" name="btnradio" data-bs-toggle="collapse" id="btn_toogleL">
+                  <label class="btn btn-outline-light2" for="btn_toogleL">
+                    Recoger en <p class="mb-0">tienda <i class="bi bi-shop-window ps-1"></i></p>
+                  </label>
+                
+                  <input type="radio" class="btn-check" type="button" name="btnradio" data-bs-toggle="collapse" id="btn_toogleR">
+                  <label class="btn btn-outline-light2" for="btn_toogleR">
+                    Envio por <p class="mb-0">paqueteria <i class="bi bi-truck ps-1"></i></p>
+                  </label>
+                </div>
+                <!-- Left dropdown section (only one button) -->
+                <section class="collapse m-2">
+                  <div class="form-group ps-2">
+                    <div class="form-check">
+                      <input class="form-check-input mt-2" type="checkbox" id="chk_left1" required>
+                      <label class="form-check-label" for="btn_checkbox1">
+                        Acepto todos los terminos y condiciones explicados en
+                        <a href="/src/about/privacity.html" target="”_blank">
+                          Terminos y condiciones <i class="bi bi-arrow-up-right-square"></i>
+                        </a>
+                      </label>
                     </div>
                   </div>
-                </div>
+                  <button id="btn_payl" type="button" class="btn btn-lg btn-success" disabled>
+                    Pagar con tarjeta mediante
+                    <p class="m-0"> stripe <i class="bi bi-cash ps-2"></i></p>
+                  </button>
+                </section>
+                <!-- Right dropdown section (completly form) -->
+                <section class="collapse m-2">
+                  <form id="frm_payR">
 
-              </div>
-            </div>
+                    <p class="text-center">
+                      Complete los datos para el envio <i class="far fa-address-book pl-1"></i>
+                    </p>
 
-            <div class="col-lg-4 col-12 order-md-2 mb-4 mt-3 px-1">
+                    <label for="inp_nameform">Nombre</label>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <input id="chk_name" type="checkbox" checked>
+                        </div>
+                      </div>
+                      <input id="inp_nameform" type="text" class="form-control" disabled required>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                      </div>
+                    </div>
 
-              <h4 class="mb-3">
-                <span class="text-secondary">Resumen de compra</span>
-                <span id="lbl_amount" class="badge">10</span>
-              </h4>
-              <ul class="list-group mb-3">
-                <li class="list-group-item">
-                  <div>
-                    <h6 class="my-0">Subtotal</h6>
-                  </div>
-                  <span id="lbl_subt">$ 1000.00</span>
-                </li>
-                <li class="list-group-item">
-                  <div>
-                    <h6 class="my-0">Envio</h6>
-                  </div>
-                  <span id="lbl_deliv">$ 100.00</span>
-                </li>
-                <li class="list-group-item">
-                  <span>Total (MXN)</span>
-                  <strong id="lbl_total">$ 1000.00</strong>
-                </li>
-              </ul>
+                    <label for="inp_emailform">Correo electronico</label>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <input id="chk_email" type="checkbox" checked>
+                        </div>
+                      </div>
+                      <input id="inp_emailform" type="email" class="form-control" disabled required>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="bi bi-envelope-open"></i></span>
+                      </div>
+                    </div>
 
-              <section id="sec_login">
-                <div class="card p-2 text-center">
-                  tripleec13@gmail.com
-                  <p class="mb-0"> iniciado correctamente </p>
-                </div>
+                    <label>Telefono</label>
+                    <div class="input-group mb-2">
+                      <input class="form-control" type="tel" placeholder="844-123-4567">
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                      </div>
+                    </div>
 
-                <div class="card">
-                  <span class="text-center mt-2 mb-1">Seleccionar metodo de envio:</span>
+                    <label>Estado</label>
+                    <div class="input-group mb-2">
+                      <select id="inp_stateform" class="form-control" required>
+                        <option selected value="">elegir...</option>
+                      </select>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="bi bi-wifi"></i></span>
+                      </div>
+                    </div>
 
-                  <div class="btn-group p-2" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check" name="btnradio" id="toggle1" autocomplete="off" data-bs-toggle="collapse" data-bs-target="#spc_collapse1" aria-controls="spc_collapse1 spc_collapse2">
-                    <label class="btn btn-outline-light2" for="toggle1">
-                      Recoger en <p class="mb-0">tienda <i class="bi bi-shop-window pl-1"></i></p>
-                    </label>
-                  
-                    <input type="radio" class="btn-check" name="btnradio" id="toggle2" autocomplete="off"  data-bs-toggle="collapse" data-bs-target="#spc_collapse2" aria-controls="spc_collapse2 spc_collapse2" >
-                    <label class="btn btn-outline-light2" for="toggle2">
-                      Envio por <p class="mb-0">paqueteria <i class="bi bi-truck pl-1"></i></p>
-                    </label>
-                  </div>
+                    <label>Municipio/delegacion</label>
+                    <div class="input-group mb-2">
+                      <select id="inp_substateform" class="form-control text-lowercase">
+                        <option selected value="">elegir...</option>
+                      </select>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="bi bi-layers"></i></span>
+                      </div>
+                    </div>
 
-                  <section class="collapse multi-collapse m-2" id="spc_collapse1">
+                    <label>Calle</label>
+                    <div class="input-group mb-2">
+                      <input class="form-control" type="text" placeholder="chiles en nogada ampliacion" required>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="bi bi-signpost-split"></i></span>
+                      </div>
+                    </div>
+
+                    <div class="form-row mb-2">
+                      <div class="col">
+                        <label>No de casa</label>
+                        <input type="text" class="form-control" placeholder="# 3412">
+                      </div>
+                      <div class="col">
+                        <label>Codigo postal</label>
+                        <input type="number" class="form-control" placeholder="65000">
+                      </div>
+                    </div>
+
+                    <label>Colonia</label>
+                    <div class="input-group mb-2">
+                      <input class="form-control" type="text" placeholder="Independencia" required="">
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="bi bi-signpost-2"></i></span>
+                      </div>
+                    </div>
+
+                    <label>Descripcion adicional</label>
+                    <div class="input-group mb-2">
+                      <textarea class="form-control" rows="2" placeholder="casa de color amazul"></textarea>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="bi bi-card-heading"></i></span>
+                      </div>
+                    </div>
+
                     <div class="form-group pl-2">
                       <div class="form-check">
                         <input class="form-check-input mt-2" type="checkbox" id="btn_checkbox1" required>
@@ -153,185 +208,91 @@
                         </label>
                       </div>
                     </div>
-                    <button id="btn_pay1" type="button" class="btn btn-lg btn-success" disabled>
+
+                    <button type="submit" class="btn btn-success mb-2 mt-3">
                       Pagar con tarjeta mediante
                       <p class="m-0"> stripe <i class="bi bi-cash ps-2"></i></p>
                     </button>
-                  </section>
-                  <section class="collapse multi-collapse" id="spc_collapse2">
-                    <form id="frm_shipping" class="p-3">
-
-                      <p class="text-center">
-                        Complete los datos para el envio <i class="far fa-address-book pl-1"></i>
-                      </p>
-
-                      <label for="inp_nameform">Nombre</label>
-                      <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text">
-                            <input id="inp_checkbox1" type="checkbox" checked="">
-                          </div>
-                        </div>
-                        <input id="inp_nameform" type="text" class="form-control" disabled value="Adbeel Estrada Martinez" required>
-                        <div class="input-group-append">
-                          <span class="input-group-text"><i class="bi bi-person"></i></span>
-                        </div>
-                      </div>
-
-                      <label for="inp_emailform">Correo electronico</label>
-                      <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text">
-                            <input id="inp_checkbox2" type="checkbox" checked>
-                          </div>
-                        </div>
-                        <input id="inp_emailform" type="email" class="form-control" disabled value="tripleec13@gmail.com" required>
-                        <div class="input-group-append">
-                          <span class="input-group-text"><i class="bi bi-envelope-open"></i></span>
-                        </div>
-                      </div>
-
-                      <label>Telefono</label>
-                      <div class="input-group mb-2">
-                        <input class="form-control" type="tel" placeholder="844-123-4567">
-                        <div class="input-group-append">
-                          <span class="input-group-text"><i class="bi bi-telephone"></i></span>
-                        </div>
-                      </div>
-
-                      <label>Estado</label>
-                      <div class="input-group mb-2">
-                        <select id="inp_state" class="form-control" required>
-                          <option value="" selected="">elegir...</option>
-                          <option>Aguascalientes</option>
-                          <option>Baja California</option>
-                          <option>Baja California Sur</option>
-                          <option>Campeche</option>
-                          <option>Coahuila de Zaragoza</option>
-                          <option>Colima</option>
-                          <option>Chiapas</option>
-                          <option>Chihuahua</option>
-                          <option>Ciudad de México</option>
-                          <option>Durango</option>
-                          <option>Guanajuato</option>
-                          <option>Guerrero</option>
-                          <option>Hidalgo</option>
-                          <option>Jalisco</option>
-                          <option>México</option>
-                          <option>Michoacán de Ocampo</option>
-                          <option>Morelos</option>
-                          <option>Nayarit</option>
-                          <option>Nuevo León</option>
-                          <option>Oaxaca</option>
-                          <option>Puebla</option>
-                          <option>Querétaro</option>
-                          <option>Quintana Roo</option>
-                          <option>San Luis Potosí</option>
-                          <option>Sinaloa</option>
-                          <option>Sonora</option>
-                          <option>Tabasco</option>
-                          <option>Tamaulipas</option>
-                          <option>Tlaxcala</option>
-                          <option>Veracruz</option>
-                          <option>Yucatán</option>
-                          <option>Zacatecas</option>
-                        </select>
-                        <div class="input-group-append">
-                          <span class="input-group-text"><i class="bi bi-wifi"></i></span>
-                        </div>
-                      </div>
-
-                      <label>Municipio/delegacion</label>
-                      <div class="input-group mb-2">
-                        <select id="inp_substate" class="form-control text-lowercase" required>
-                          <option value="" selected="">elegir...</option>
-                        </select>
-                        <div class="input-group-append">
-                          <span class="input-group-text"><i class="bi bi-layers"></i></span>
-                        </div>
-                      </div>
-
-                      <label>Calle</label>
-                      <div class="input-group mb-2">
-                        <input class="form-control" type="text" placeholder="chiles en nogada ampliacion" required>
-                        <div class="input-group-append">
-                          <span class="input-group-text"><i class="bi bi-signpost-split"></i></span>
-                        </div>
-                      </div>
-
-                      <div class="form-row mb-2">
-                        <div class="col">
-                          <label>No de casa</label>
-                          <input type="text" class="form-control" placeholder="# 3412">
-                        </div>
-                        <div class="col">
-                          <label>Codigo postal</label>
-                          <input type="number" class="form-control" placeholder="65000">
-                        </div>
-                      </div>
-
-                      <label>Colonia</label>
-                      <div class="input-group mb-2">
-                        <input class="form-control" type="text" placeholder="Independencia" required="">
-                        <div class="input-group-append">
-                          <span class="input-group-text"><i class="bi bi-signpost-2"></i></span>
-                        </div>
-                      </div>
-
-                      <label>Descripcion adicional</label>
-                      <div class="input-group mb-2">
-                        <textarea class="form-control" rows="2" placeholder="casa de color amazul"></textarea>
-                        <div class="input-group-append">
-                          <span class="input-group-text"><i class="bi bi-card-heading"></i></span>
-                        </div>
-                      </div>
-
-                      <div class="form-group pl-2">
-                        <div class="form-check">
-                          <input class="form-check-input mt-2" type="checkbox" id="btn_checkbox1" required>
-                          <label class="form-check-label" for="btn_checkbox1">
-                            Acepto todos los terminos y condiciones explicados en
-                            <a href="/src/about/privacity.html" target="”_blank">
-                              Terminos y condiciones <i class="bi bi-arrow-up-right-square"></i>
-                            </a>
-                          </label>
-                        </div>
-                      </div>
-
-                      <button id="btn_pay2" type="submit" class="btn btn-success mb-2 mt-3">
-                        Pagar con tarjeta mediante
-                        <p class="m-0"> stripe <i class="bi bi-cash ps-2"></i></p>
-                      </button>
-                    </form>
-                  </section>
-                
+                  </form>
+                </section>
+              
+              </div>
+              <!--Space-->
+              <br class="my-4">
+              <br>
+              <!--Developer note-->
+              <div class="card mt-4">
+                <div class="p-3">
+                  <span>Nota del desarrollador : </span>
+                  <span>La aplicacion esta en modo de prueba, por lo que solo se aceptara la
+                    tarjeta de credito con numero </span>
+                  <span>4242-4242-4242-4242 </span>
+                  <span>como metodo de pago de prueba, esto siguiendo las indicaciones de la
+                    aplicacion <a href="https://stripe.com/" target="_blank">stripe.com© </a></span>
                 </div>
-
-                <br class="my-4">
-                <br>
-
-                <div class="card mt-4">
-                  <div class="p-3">
-                    <span>Nota del desarrollador : </span>
-                    <span>La aplicacion esta en modo de prueba, por lo que solo se aceptara la
-                      tarjeta de credito con numero </span>
-                    <span>4242-4242-4242-4242 </span>
-                    <span>como metodo de pago de prueba, esto siguiendo las indicaciones de la
-                      aplicacion <a href="https://stripe.com/" target="_blank">stripe.com© </a></span>
-                  </div>
-                </div>
-              </section>
-            </div>
-
-
+              </div>
+            </section>
           </div>
+
         </div>
-
       </div>
-    </section>
-    <!--------------------- FOOTER SECTION --------------------->
-    <%= htmlWebpackPlugin.tags.footer %>
+    </div>
+  </section>
 
+  <!--------------------- FOOTER SECTION --------------------->
+  <%= htmlWebpackPlugin.tags.footer %>
+  <!--------------------- MODAL SPACE SECTION --------------------->
+  <section id="modals"></section>
+  <!--------------------- TEMPLATE CARD PRODUCT SECTION --------------------->
+  <template id="tmp_card2">
+    <div class="col-lg-12 col-md-12 col-12 px-0">
+      <div class="card p-1">
+        <div class="row mx-0">
+          <section class="col-sm-3 col-12">
+            <img class="card-img m-md-2">
+            <div><div class="crd-label"></div></div>
+          </section>
+          <section class="col-sm-9 col-12">
+            <div class="card-body py-1 px-1">
+              <div class="row">
+                <div class="col-sm-6 col-12 pr-md-0">
+                  <a class="crd-link" data-toggle="tooltip">
+                    <i class="bi bi-arrow-up-right-square pl-2"></i>
+                  </a>
+                </div>
+                <div class="col-sm-6 col-12 pl-0 crd-cost">
+                </div>
+              </div>
+              <p class="card-text m-0">
+              </p>
+              <div class="row mx-0 mt-1">
+                <div class="col-lg-5 col-md-5 col-6 ps-0 crd-bottom"></div>
+                <div class="col-lg-5 offset-lg-2 col-md-7 pe-0 col-6">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <button class="btn btn-success" type="button">
+                        <i class="bi bi-plus-circle"></i>
+                      </button>
+                    </div>
+                    <input type="number" class="form-control">
+                    <div class="input-group-append">
+                      <button class="btn btn-danger" type="button">
+                        <i class="bi bi-dash-circle"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </template>
+  <!--------------------- TEMPLATE MODAL SECTION --------------------->
+  <%= htmlWebpackPlugin.tags.tmodal %>
+  <!--------------------- SCRIPT SECTION --------------------->
+  <script src="https://js.stripe.com/v3/"></script>
+  <%= htmlWebpackPlugin.tags.tscripts %>
 </body>
-
 </html>

@@ -16,39 +16,15 @@
     <div class="container">
       <div class="row">
 
-        <div class="col-lg-3 col-md-4 col-6 p-2">
-          <section class="card card2">
-            <div>
-              <img src="https://storage.googleapis.com/la-liga-coleccionable.appspot.com/comic/314/0379B314.jpg" class="card-img-top p-1" alt="...">
-            </div>
+        <div class="col-12 p-2">
+          <h1 id="lbl_title" class="text-center mt-2 mx-5 mb-0"> </h1>
+        </div>
 
-            <div class="card-body py-2 px-3"> 
-              <p class="card-title m-0"> 
-                $ 175,00
-              </p>
-              <p class="card-text m-0">
-                <a href="/src/product/?proid=-MLkB4dbNyF1bKArh5Ym">
-                  BATMAN THREE JOKERS #3 COVER B VARIANT JASON FABOK RED HOOD COVER <i class="bi bi-arrow-up-right-square pl-2"></i>
-                </a>
-              </p>
-              <p class="card-text m-0">single issue </p>  
-            </div>
-
-
-            <div class="p-2 bg-transparent">
-              <button type="button" class="btn btn-outline-light2 btn-block p-1">
-                Agregar a favoritos <i class="bi bi-hand-thumbs-up"></i>
-              </button>
-              <button type="button" class="btn btn-success btn-block p-1">
-                Agregar al carrito <i class="bi bi-cart-plus" ></i>
-              </button>
-            </div>
-          
-            <div>
-              <div class="position-absolute">DISPONIBLE</div>
-            </div>
-          
-          </section>
+        <div id="sec_nresults" class="col-md-12 col-12 px-0" style="display: none;">
+          <div class="card emptyBox">
+            <div>0 RESULTADOS PARA <p class="mb-0">SU BUSQUEDA</p></div>
+            <i class="bi bi-border pt-3"></i>
+          </div>
         </div>
 
       </div>
@@ -57,6 +33,41 @@
 
   <!--------------------- FOOTER SECTION --------------------->
   <%= htmlWebpackPlugin.tags.footer %>
+  <!--------------------- MODAL SPACE SECTION --------------------->
+  <section id="modals"></section>
+  <!--------------------- TEMPLATE CARD PRODUCT SECTION --------------------->
+  <%= htmlWebpackPlugin.tags.tcard %>
+  <!--------------------- TEMPLATE MODAL SECTION --------------------->
+  <%= htmlWebpackPlugin.tags.tmodal %>
+  <!--------------------- SCRIPT SECTION --------------------->
+  <%= htmlWebpackPlugin.tags.tscripts %>
 
+  <!--  OLD CARD
+    <template id="tmp_card">
+      <div class="col-lg-3 col-md-4 col-6 p-2">
+        <section class="card card2">
+          <div>
+            <img class="card-img-top p-1">
+          </div>
+          <div class="card-body py-2 px-3"> 
+            <p class="card-title m-0"></p>
+            <p class="card-text m-0"><a href=""></a></p>
+            <p class="card-text m-0 version"></p>  
+          </div>
+          <div class="p-2">
+            <button type="button" class="btn btn-outline-light2 btn-block p-1">
+              Agregar a favoritos <i class="bi bi-hand-thumbs-up"></i>
+            </button>
+            <button type="button" class="btn btn-success btn-block p-1">
+              Agregar al carrito <i class="bi bi-cart-plus" ></i>
+            </button>
+          </div>
+          <div>
+            <div class="position-absolute"></div>
+          </div>
+        </section>
+      </div>
+    </template>
+  -->
 </body>
 </html>

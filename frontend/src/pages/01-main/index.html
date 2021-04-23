@@ -9,81 +9,7 @@
 <body>
   
   <!--------------------- HEADER SECTION --------------------->
-  <section id="sec_navbar">
-    <header class="container">
-      <nav class="navbar navbar-expand-lg py-0">
-        <!--------------------- BUTTON FIRST IMAGE SECTION (LEFT SIDE PART) --------------------->
-        <a class="navbar-brand" href="#" data-toggle="tooltip" data-placement="bottom" title="La mejor tienda de comics">
-          <img src="/img/title.png" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <!--------------------- NAVBAR TOOGLE GROUP ELEMENTS (RIGHT SIDE PART) --------------------->
-        <div class="collapse navbar-collapse">
-          <!--------------------- FIRST DROPDOWN (TYPES) --------------------->
-          <section class="navbar-nav">
-            <div class="nav-item dropdown pe-2">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Tipos
-              </a>
-              <ul id="drp_types" class="dropdown-menu"></ul>
-            </div>
-          </section>
-          <!--------------------- SEARCH BAR --------------------->
-          <section class="navbar-nav ms-lg-auto">
-            <div class="input-group">
-              <input id="inp_search" type="text" class="form-control" placeholder="Buscar">
-            </div>
-            <div class="card search_box">
-              <div class="btn-group-vertical" role="group" style="display: none;">
-                <!--
-                <a class="btn btn-outline-light">
-                  <i class="bi bi-search pr-2"></i> Search
-                </a>
-                -->
-              </div>
-            </div>
-          </section>
-
-          <!---------------------  PART #3 GROUP BUTTONS RIGHT --------------------->
-          <section class="navbar-nav">
-            <div class="btn-group rounded-0 dropdown" role="group">
-          
-              <button id="btn_search" type="button" class="btn btn-outline-light2" data-toggle="tooltip" data-placement="bottom" title="Abrir el buscador">
-                <p class="m-0"> <i class="bi bi-search"></i></p>
-                <p class="m-0">Buscar </p>
-              </button>
-              <div class="dropdown">
-                <button type="button" class="nav-link btn btn-outline-light2" id="drp_account" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <p class="m-0"> <i class="bi bi-person-circle"></i></p>
-                  <p id="lbl_account" class="m-0">Cuenta </p>
-                </button>
-                <div class="dropdown-menu m-0 p-2" aria-labelledby="drp_account">
-                  <button id="btn_login" type="button" class="btn btn-outline-danger">
-                    Iniciar sesion con <p class="m-0"><i class="bi bi-google"></i> -mail</p>
-                  </button>
-                  <button id="btn_logout" type="button" class="btn btn-outline-dark">
-                    <p class="m-0">Cerrar</p> <p class="m-0">sesion <i class="bi bi-door-open"></i></p>    
-                  </button>
-                </div>
-              </div>
-              <button id="btn_wish" type="button" class="btn btn-outline-light2" data-toggle="tooltip" data-placement="bottom" title="Mi lista de favoritos">
-                <p class="m-0"> <span id="lbl_wish"> 0 </span> <i class="bi bi-hand-thumbs-up"></i></p>
-                <p class="m-0">Lista </p>
-              </button>
-              <button id="btn_cart" type="button" class="btn btn-outline-light2" data-toggle="tooltip" data-placement="bottom" title="Agregados al carrito">
-                <p class="m-0"> <span id="lbl_cart"> 0 </span> <i class="bi bi-cart4"></i></p>
-                <p class="m-0">Carrito </p>
-              </button>
-              
-            </div>
-          </section>
-        </div>
-      </nav>
-    </header>
-  </section>
-
+  <%= htmlWebpackPlugin.tags.header %>
   <!--------------------- CAROUSEL SECTION --------------------->
   <section id="sec_slides">
     <div class="carousel slide carousel-fade h-100" data-bs-ride="carousel">
@@ -135,22 +61,22 @@
       <div class="row">
         <section class="col-6">
           <div class="card my-1 text-center">
-            <h1 class="my-3">PREVENTAS</h1>
+            <button class="btn btn-outline-dark"><h1 class="my-3"> PREVENTAS </h1></button>
           </div>
         </section>
         <section class="col-6">
           <div class="card my-1 text-center">
-            <h1 class="my-3">FIGURAS</h1>
+            <button class="btn btn-outline-dark"><h1 class="my-3"> FIGURAS </h1></button>
           </div>
         </section>
         <section class="col-6">
           <div class="card my-1 text-center">
-            <h1 class="my-3">OTROS</h1>
+            <button class="btn btn-outline-dark"><h1 class="my-3"> OTROS </h1></button>
           </div>
         </section>
         <section class="col-6">
           <div class="card my-1 text-center">
-            <h1 class="my-3">TODO</h1>
+             <button class="btn btn-outline-dark"><h1 class="my-3"> TODO </h1></button>
           </div>
         </section>
       </div>
@@ -161,48 +87,9 @@
   <section id="sec_body1" class="position-relative">
     <div class="container">
       <div class="row">
-
         <div class="col-12 p-2">
           <h1 class="text-center mt-2 mx-5 mb-0">Articulos mas recientes </h1>
         </div>
-
-      <!--
-        <div class="col-lg-3 col-md-4 col-6 p-2">
-          <section class="card card2">
-            <div>
-              <img src="https://storage.googleapis.com/la-liga-coleccionable.appspot.com/comic/314/0379B314.jpg" class="card-img-top p-1" alt="...">
-            </div>
-
-            <div class="card-body py-2 px-3"> 
-              <p class="card-title m-0"> 
-                $ 175,00
-              </p>
-              <p class="card-text m-0">
-                <a href="/src/product/?proid=-MLkB4dbNyF1bKArh5Ym">
-                  BATMAN THREE JOKERS #3 COVER B VARIANT JASON FABOK RED HOOD COVER <i class="bi bi-arrow-up-right-square pl-2"></i>
-                </a>
-              </p>
-              <p class="card-text m-0">single issue </p>  
-            </div>
-
-
-            <div class="p-2 bg-transparent">
-              <button type="button" class="btn btn-outline-light2 btn-block p-1">
-                Agregar a favoritos <i class="bi bi-hand-thumbs-up"></i>
-              </button>
-              <button type="button" class="btn btn-success btn-block p-1">
-                Agregar al carrito <i class="bi bi-cart-plus" ></i>
-              </button>
-            </div>
-          
-            <div class="position-absolute">
-              <div class="position-absolute">DISPONIBLE</div>
-            </div>
-          
-          </section>
-        </div>
-      -->
-
       </div>
     </div>
   </section>
@@ -238,76 +125,15 @@
 
   <!--------------------- FOOTER SECTION --------------------->
   <%= htmlWebpackPlugin.tags.footer %>
-
-  <!--------------------- TEMPLATE CARD PRODUCT SECTION --------------------->
-  <template id="tmp_card">
-    <div class="col-lg-3 col-md-4 col-6 p-2">
-      <section class="card card2">
-        <div>
-          <img class="card-img-top p-1">
-        </div>
-        <div class="card-body py-2 px-3"> 
-          <p class="card-title m-0"></p>
-          <p class="card-text m-0"><a href=""></a></p>
-          <p class="card-text m-0 version"></p>  
-        </div>
-        <div class="p-2">
-          <button type="button" class="btn btn-outline-light2 btn-block p-1">
-            Agregar a favoritos <i class="bi bi-hand-thumbs-up"></i>
-          </button>
-          <button type="button" class="btn btn-success btn-block p-1">
-            Agregar al carrito <i class="bi bi-cart-plus" ></i>
-          </button>
-        </div>
-        <div>
-          <div class="position-absolute"></div>
-        </div>
-      </section>
-    </div>
-  </template>
-
-  <!--------------------- TEMPLATE MODAL SECTION --------------------->
-  <template id="tmp_modal">
-    <div class="modal fade">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">La liga: colleccionables</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            Mucho texto
-          </div>
-          <div class="modal-footer oneb d-none">
-            <button type="button" class="btn btn-outline-primary w-75" data-bs-dismiss="modal">OK</button>
-          </div>
-          <div class="modal-footer twob d-none">
-            <button type="button" class="btn btn-outline-dark">Confirmar</button>
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </template>
-
-  <!--------------------- TEMPLATE SPINNER SECTION --------------------->
-  <template id="tmp_spinner">
-    <div class="modal fade spinner1">
-      <div class="modal-dialog modal-dialog-centered">
-        <section>
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-          <h1>ESPERE UN <p>MOMENTO</p></h1>
-        </section>
-      </div>
-    </div>
-  </template>
-
   <!--------------------- MODAL SPACE SECTION --------------------->
   <section id="modals"></section>
-  
-  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+  <!--------------------- TEMPLATE CARD PRODUCT SECTION --------------------->
+  <%= htmlWebpackPlugin.tags.tcard %>
+  <!--------------------- TEMPLATE MODAL SECTION --------------------->
+  <%= htmlWebpackPlugin.tags.tmodal %>
+  <!--------------------- TEMPLATE SPINNER SECTION --------------------->
+  <%= htmlWebpackPlugin.tags.tspinner %>
+  <!--------------------- SCRIPT SECTION --------------------->
+  <%= htmlWebpackPlugin.tags.tscripts %>
 </body>
 </html>

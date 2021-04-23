@@ -12,7 +12,7 @@ const desPath= './www/';
 const outFiles= [{},[]];
 const inpFiles= [
   ['main','01-main','/index.html'],
-  //['error','05-error','/404.html'],
+  ['error','05-error','/404.html'],
   //['about','07-about','/pages/about/index.html'],
   ['articles','11-articles','/pages/articles/index.html'],
   ['product','12-product','/pages/product/index.html'],
@@ -35,7 +35,11 @@ inpFiles.forEach( r =>{
           title: "Eshop 94",
           header: readFileSync( join( __dirname, './src/template/header.html' ) ),
           footer: readFileSync( join( __dirname, './src/template/footer.html' ) ),
-          icon: `<link rel="icon" href="/img/favicon.ico">`
+          icon: `<link rel="icon" href="/img/favicon.ico">`,
+          tcard: readFileSync( join( __dirname, './src/template/t_card.html' ) ),
+          tmodal: readFileSync( join( __dirname, './src/template/t_modal.html' ) ),
+          tspinner: readFileSync( join( __dirname, './src/template/t_spinner.html' ) ),
+          tscripts: readFileSync( join( __dirname, `./src/template/t_script${ prod ? "P" : "D" }.html` ) ),
           //IP: prod ? '' : 'http://localhost:3300'
         },
       }

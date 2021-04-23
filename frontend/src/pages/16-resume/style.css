@@ -8,6 +8,8 @@
   overflow: hidden; 
   background-color: var(--color2); 
   color: var(--color1); 
+  padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 #sec_body16 .card section:nth-child(1){
@@ -26,6 +28,8 @@
 #sec_body16 img{
   vertical-align: text-bottom;
   height: auto;
+  width: 60px;
+  padding-left: 0.75rem;
 }
 
 #sec_body16 .table-responsive{
@@ -38,6 +42,19 @@
 #sec_body16 table{
   color: var(--color1);
   font-family: poppins1;
+  margin-bottom: 0;
+}
+
+#sec_body16 thead tr{
+  font-size: 18px;
+}
+
+#sec_body16 tbody tr:last-child{
+  font-size: 24px;
+}
+
+#sec_body16 tbody tr:last-child p{
+  margin: 0;
 }
 
 #sec_body16 section:nth-child(3){

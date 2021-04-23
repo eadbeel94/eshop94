@@ -14,13 +14,13 @@
   <!--------------------- MAIN SECTION --------------------->
   <section id="sec_body16">
     <div class="container">
-      <div class="card p-4" >
+      <div class="card">
         <section>
           <span>            
             Compra realizada con exito <span id="lbl_uname"></span>
           </span>
           <span>
-            <img id="spc_uimg" class="pl-3"/>
+            <img id="spc_uimg"/>
           </span>
           <p class="text-center" >
             Resumen de compra <i class="bi bi-card-list ps-2"></i> 
@@ -35,37 +35,12 @@
                 <th scope="col">#</th>
                 <th scope="col">Cantidad</th>
                 <th scope="col">Producto</th>
-                <th scope="col">C/ Unidad</th>
-                <th scope="col">C/ total</th>
+                <th scope="col">P/ Unidad</th>
+                <th scope="col">P/ total</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@mdo</td>
-              </tr>
-            </tbody>
-            <!--
             <tbody id="spc_table">
             </tbody>
-            -->
           </table>
           
         </section>
@@ -88,6 +63,34 @@
 
   <!--------------------- FOOTER SECTION --------------------->
   <%= htmlWebpackPlugin.tags.footer %>
-
+  <!--------------------- MODAL SPACE SECTION --------------------->
+  <section id="modals"></section>
+  <!--------------------- TEMPLATE CARD PRODUCT SECTION --------------------->
+  <%= htmlWebpackPlugin.tags.tcard %>
+  <!--------------------- TEMPLATE MODAL SECTION --------------------->
+  <%= htmlWebpackPlugin.tags.tmodal %>
+  <!--------------------- TEMPLATE TABLE SECTION --------------------->
+  <template id="tmp_row1">
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </template>
+  <template id="tmp_row2">
+    <tr>
+      <th scope="row"></th>
+      <th></th>
+      <td colspan="2">Total pagado: </td>
+      <td>
+        <p></p> 
+        <p>MXN</p> 
+      </td>
+    </tr>
+  </template>
+  <!--------------------- SCRIPT SECTION --------------------->
+  <%= htmlWebpackPlugin.tags.tscripts %>
 </body>
 </html>
