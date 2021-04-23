@@ -86,10 +86,11 @@
   text-transform: uppercase;
 
   transform: rotate(45deg); 
-  width: 250px; 
-  height: 35px;
-  top: 35px;  
-  right: -70px;
+  width: 250px;
+  height: 28px;
+  top: 45px;
+  right: -66px;
+  font-size: 17px;
 }
 
 

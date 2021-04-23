@@ -1,14 +1,16 @@
-#sec_body5 .card{
-  font-family: poppins1; 
-  font-size: 3.5rem; 
-  justify-content: center;
-  display: flex;
-  text-align: center;
-  height: 100%;
-  min-height: 65vh;
-  margin: 2rem;
+#sec_body8{
+  min-height: 75vh;
 }
 
-#sec_body5 .card i{
-  font-size: 15rem; 
+#sec_mission .text-center{
+  font-family: hcomic1;
+  font-size: 40px;
+  color: var(--color2);
+  text-transform: uppercase;
+}
+
+#sec_mission .text-justify{
+  font-family: poppins1;
+  font-size: 18px;
+  color: var(--bs-gray);
 }

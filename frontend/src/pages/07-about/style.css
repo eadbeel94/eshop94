@@ -1,0 +1,34 @@
+#sec_body7{
+  min-height: 75vh;
+}
+
+#sec_mission .text-center{
+  font-size: 40px;
+  font-family: hcomic1;
+  color: var(--bs-gray);
+}
+
+#sec_mission .text-justify{
+  font-family: poppins1;
+  color: var(--color2);
+}
+
+#sec_team p.d-flex{
+  font-size: 40px;
+  font-family: hcomic1;
+  color: var(--bs-gray);
+}
+
+#sec_team img{
+  height: 50px;
+}
+
+#sec_contact .text-center{
+  font-size: 40px;
+  font-family: hcomic1;
+}
+
+#sec_contact .row{
+  font-size: 18px;
+  color: var(--color2);
+}

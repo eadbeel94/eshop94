@@ -3,7 +3,7 @@
 import './style.css';
 
 import { Collapse , Modal } from 'bootstrap/dist/js/bootstrap.bundle';
-const { modalShow, getError, fillNavbar, genDropTypes, genSearchBox, IP } = require('../../js/helper.js');
+const { modalShow, getError, fillNavbar, genDropTypes, genSearchBox, modalCookie, IP } = require('../../js/helper.js');
 
 process.env.NODE_ENV === 'development' && firebase.initializeApp({
   apiKey: "AIzaSyALOIRaODueInxmXbrnkT6l8aQ5JWgE6Vc",
@@ -33,27 +33,30 @@ const genCards2= ( spaceID="" , templateID="" , list=[] )=>{
   const $space= d.querySelector(spaceID);
   const $fragment= d.createDocumentFragment();
   const $template= d.getElementById(templateID).content;
-  list.forEach( (el,ind)=>{
-    $template.querySelector('div').dataset.id= el.id;
-    $template.querySelector('img').setAttribute('src',el.purl);
-    $template.querySelector('.crd-label').textContent= el.clas;
-    $template.querySelector('.crd-link').textContent= el.mname;
-    $template.querySelector('.crd-link').setAttribute('href',`/pages/product/?pid=${ el.id }`);
-    $template.querySelector('.crd-cost').textContent = `$${el.cost},00`; 
-    $template.querySelector('.card-body p').textContent = el.desc || el.mname; 
-    $template.querySelector('.crd-bottom').textContent = el.ver; 
-    $template.querySelector('.input-group input').value = el.cliQty; 
-    $template.querySelector('.input-group input').dataset.id= el.id;
-    $template.querySelector('.btn-success').dataset.id= el.id;
-    $template.querySelector('.btn-success').dataset.oper= "plus";
-    $template.querySelector('.btn-success i').dataset.id= el.id;
-    $template.querySelector('.btn-success i').dataset.oper= "plus";
-    $template.querySelector('.btn-danger').dataset.id= el.id;
-    $template.querySelector('.btn-danger').dataset.oper= "minus";
-    $template.querySelector('.btn-danger i').dataset.id= el.id;
-    $template.querySelector('.btn-danger i').dataset.oper= "minus";
-
-    $fragment.appendChild( d.importNode( $template , true ) )
+  list.forEach( el =>{
+    const enable= el.clas.toUpperCase() == "DISPONIBLE" || el.clas.toUpperCase() == "PREVENTA";
+    if( enable ){
+      $template.querySelector('div').dataset.id= el.id;
+      $template.querySelector('img').setAttribute('src',el.purl);
+      $template.querySelector('.crd-label').textContent= el.clas;
+      $template.querySelector('.crd-link').textContent= el.mname;
+      $template.querySelector('.crd-link').setAttribute('href',`/pages/product/?pid=${ el.id }`);
+      $template.querySelector('.crd-cost').textContent = `$${el.cost},00`; 
+      $template.querySelector('.card-body p').textContent = el.desc || el.mname; 
+      $template.querySelector('.crd-bottom').textContent = el.ver; 
+      $template.querySelector('.input-group input').value = el.cliQty; 
+      $template.querySelector('.input-group input').dataset.id= el.id;
+      $template.querySelector('.btn-success').dataset.id= el.id;
+      $template.querySelector('.btn-success').dataset.oper= "plus";
+      $template.querySelector('.btn-success i').dataset.id= el.id;
+      $template.querySelector('.btn-success i').dataset.oper= "plus";
+      $template.querySelector('.btn-danger').dataset.id= el.id;
+      $template.querySelector('.btn-danger').dataset.oper= "minus";
+      $template.querySelector('.btn-danger i').dataset.id= el.id;
+      $template.querySelector('.btn-danger i').dataset.oper= "minus";
+  
+      $fragment.appendChild( d.importNode( $template , true ) )
+    }
   })
   $space.appendChild($fragment);
 };
@@ -64,7 +67,7 @@ const watchCards2= ( spaceID="" , uid )=>{
 
   const sendChange= async ( info={} ) =>{
     try {
-      const res= await fetch(`${IP}/APIshop/first/changeCart`,{
+      const res= await fetch(`${IP}/APIshop/cart/mod-cli-cart`,{
         method: 'PUT',
         body: JSON.stringify(info),
         headers:{ 'Content-Type': 'application/json' } 
@@ -75,7 +78,7 @@ const watchCards2= ( spaceID="" , uid )=>{
       if( !json.status ) throw { status: json.status , message: `${ json.data }` };
       const { prod , qty , total }= json.data;
 
-      if( prod > 0 )  $space.querySelector(`input[data-id="${ info.prod }"]`).value= prod
+      if( prod > 0 )  $space.querySelector(`input[data-id="${ info.prod }"]`).value= prod;
       else            $space.querySelector(`div[data-id="${ info.prod }"]`  ).innerHTML= "";
 
       $lbl_qty.textContent= qty;
@@ -117,7 +120,7 @@ const watchCards2= ( spaceID="" , uid )=>{
 
 const processPay= async ( info={} ) =>{
   try {
-    const res= await fetch(`${IP}/APIshop/first/create-checkout-session`,{
+    const res= await fetch(`${IP}/APIshop/check/create-session`,{
       method: 'POST',
       body: JSON.stringify(info),
       headers:{ 'Content-Type': 'application/json' } 
@@ -225,7 +228,7 @@ const watchDrp= ( uid, name, email )=>{
 const main= async()=>{
   //const { modalHide }= spinnerShow( Modal , "modals" , "tmp_spinner" );
   try {
-    const res= await fetch(`${IP}/APIshop/first/common`);
+    const res= await fetch(`${IP}/APIshop/central/get-same`);
     const json= await res.json();
 
     if( !res.ok ) throw { status: res.status , message: `Fetch code error -> ${ res.statusText }` };
@@ -254,7 +257,7 @@ const main= async()=>{
     );
     try {
 
-      const res= await fetch(`${IP}/APIshop/first/getClient?id=${ user.uid }&type=cart`);
+      const res= await fetch(`${IP}/APIshop/cart/get-cli-cart?id=${ user.uid }&type=cart`);
       const json= await res.json();
   
       if( !res.ok ) throw { status: res.status , message: `Fetch code error -> ${ res.statusText }` };
@@ -274,7 +277,10 @@ const main= async()=>{
       watchDrp( user.uid, user.displayName, user.email );
 
     } catch (err) { modalShow( Modal , "modals" , "tmp_modal" , getError(err) ); console.log( 250 , err ) };
-  })
+  });
+
+  modalCookie('.modal-cookie');
+
   //setTimeout(() => modalHide(), 500);
 };
 

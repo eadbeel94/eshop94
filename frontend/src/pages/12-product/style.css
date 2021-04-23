@@ -1,5 +1,5 @@
 #sec_body12{
-  min-height: 70vh;
+  min-height: 75vh;
 }
 
 #sec_body12 .card{
@@ -108,3 +108,19 @@
   text-align: end;
 }
 
+
+
+
+.emptyBox{
+  height: 70vh;
+  align-items: center;
+  justify-content: center;
+
+  font-family: poppins1; 
+  font-size: 3.5rem; 
+  overflow: hidden;
+}
+
+.emptyBox div{
+  text-align: center;
+}

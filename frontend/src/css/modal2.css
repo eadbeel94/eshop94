@@ -63,3 +63,30 @@
   color: var(--color1);
   opacity: 0.9;
 }
+
+
+.modal-cookie .modal-dialog{
+  max-width: 100%;
+}
+
+.modal-cookie .row{
+  align-items: flex-end;
+  font-family: poppins1;
+}
+
+.modal-cookie section{
+  padding: 1rem;
+  border-radius: 0;
+}
+
+.modal-cookie .btn{
+  width: 100%;
+}
+
+.modal-cookie .btn-group{
+  width: 100%;
+}
+
+.modal-cookie .col-md-9{
+  text-align: justify;
+}

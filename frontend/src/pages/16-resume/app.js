@@ -3,7 +3,7 @@
 import './style.css';
 
 import { Modal } from 'bootstrap/dist/js/bootstrap.bundle';
-const { modalShow, getError, fillNavbar, genDropTypes, genSearchBox, IP } = require('../../js/helper.js');
+const { modalShow, getError, fillNavbar, genDropTypes, genSearchBox, modalCookie, IP } = require('../../js/helper.js');
 
 
 process.env.NODE_ENV === 'development' && firebase.initializeApp({
@@ -50,7 +50,7 @@ const main= async()=>{
   try {
     const $lbl_title= document.getElementById('lbl_title');
 
-    const res= await fetch(`${IP}/APIshop/first/common`);
+    const res= await fetch(`${IP}/APIshop/central/get-same`);
     const json= await res.json();
 
     if( !res.ok ) throw { status: res.status , message: `Fetch code error -> ${ res.statusText }` };
@@ -86,7 +86,7 @@ const main= async()=>{
   });
 
   try {
-    const res= await fetch(`${IP}/APIshop/first/resume?cid=${ urlp.get('cid') }`);
+    const res= await fetch(`${IP}/APIshop/check/resume?cid=${ urlp.get('cid') }`);
     const json= await res.json();
   
     if( !res.ok ) throw { status: res.status , message: `${ res.statusText }` };
@@ -99,6 +99,8 @@ const main= async()=>{
     fillTable( "#spc_table","tmp_row1" , "tmp_row2" , products , total );
 
   } catch (err) { modalShow( Modal , "modals" , "tmp_modal" , getError(err) ); console.log( 40 , err ) };
+
+  modalCookie('.modal-cookie');
   
   //setTimeout(() => modalHide(), 500);
 };

@@ -15,6 +15,7 @@ const modalShow= ( classModal , spaceID="" , templateID="" , body="" , btns=1 , 
 
   $fragment.appendChild( d.importNode( $template , true ) );
   $sec.innerHTML= "";
+  d.querySelectorAll('.modal-backdrop').forEach( el => el.outerHTML= "" );
   $sec.appendChild($fragment);
 
   const modal= new classModal(`#${spaceID} .modal`);
@@ -81,7 +82,7 @@ const fillNavbar= async (
     $btn_login.disabled= true;
     $btn_logout.disabled= false;
     try {
-      const res= await fetch(`${IP}/APIshop/first/getCart?id=${ userInfo.uid }`);
+      const res= await fetch(`${IP}/APIshop/cart/get-cli-counters?id=${ userInfo.uid }`);
       const json= await res.json();
 
       if( !res.ok ) throw { status: res.status , message: `${ res.statusText }` };
@@ -142,7 +143,7 @@ const genCards= ( spaceID="" , templateID="" , list=[] )=>{
   const $fragment= d.createDocumentFragment();
   const $template= d.getElementById(templateID).content;
   list.forEach( el=>{
-    const enable= String(el.clas).toUpperCase() != "AGOTADO";
+    const enable= el.clas.toUpperCase() == "DISPONIBLE" || el.clas.toUpperCase() == "PREVENTA";
 
     $template.querySelector('img').setAttribute('src',el.purl)
     $template.querySelector('.card-title').textContent = `$${el.cost},00`;
@@ -180,7 +181,7 @@ const watchCards= ( spaceID="" , uid , lblWishID="" , lblCartID=""  )=>{
             "type": ev.target.dataset.type  
           };
           //console.log( 190, send )
-          const res= await fetch(`${IP}/APIshop/first/addCart`,{
+          const res= await fetch(`${IP}/APIshop/cart/add-once-cli-cart`,{
             method: 'POST',
             body: JSON.stringify(send),
             headers:{ 'Content-Type': 'application/json'  } 
@@ -199,4 +200,11 @@ const watchCards= ( spaceID="" , uid , lblWishID="" , lblCartID=""  )=>{
   }
 };
 
-module.exports= { modalShow, spinnerShow, getError, fillNavbar, genDropTypes, genSearchBox, genCards, watchCards , IP };
+const modalCookie= ( modalId="" )=>{
+  const $mod_Cookie= d.querySelector(modalId);
+  const accepted= localStorage.getItem('accepted');
+  !accepted && new Modal($mod_Cookie).show();
+  $mod_Cookie.addEventListener('hide.bs.modal', () => localStorage.setItem('accepted',true) );
+}
+
+module.exports= { modalShow, spinnerShow, getError, fillNavbar, genDropTypes, genSearchBox, genCards, watchCards, modalCookie, IP };

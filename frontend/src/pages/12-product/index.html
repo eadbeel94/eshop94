@@ -14,6 +14,14 @@
   <!--------------------- MAIN SECTION --------------------->
   <section id="sec_body12">
     <div class="container my-2">
+
+      <section id="sec_nresults" style="display: none;">
+        <div class="card emptyBox">
+          <div>ELEMENTO NO <p class="mb-0">ENCONTRADO</p></div>
+          <i class="bi bi-emoji-neutral pt-3"></i>
+        </div>
+      </section>
+
     </div>
   </section>
 
@@ -21,6 +29,7 @@
   <%= htmlWebpackPlugin.tags.footer %>
   <!--------------------- MODAL SPACE SECTION --------------------->
   <section id="modals"></section>
+  <%= htmlWebpackPlugin.tags.modcookie %>
   <!--------------------- TEMPLATE CARD PRODUCT SECTION --------------------->
   <template id="tmp_card2">
     <section class="card">

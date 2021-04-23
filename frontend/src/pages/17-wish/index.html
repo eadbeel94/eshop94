@@ -15,9 +15,17 @@
   <section id="sec_body17">
     <div class="container">
       <div class="card mainCard">
-        <h3 class="mx-auto mt-2">Mi lista de favoritos</h3>
+        <h3 id="lbl_title" class="mx-auto mt-2" style="display: none;">Mi lista de favoritos</h3>
         <div id="sec_products" class="row mx-0">
         </div>
+
+        <section id="sec_nresults" style="display: none;">
+          <div class="card emptyBox">
+            <div>AUN NO TIENES ELEMENTOS <p class="mb-0">EN TU LISTA DE FAVORITOS</p></div>
+            <i class="bi bi-emoji-neutral pt-3"></i>
+          </div>
+        </section>
+
       </div>
     </div>
   </section>
@@ -26,6 +34,7 @@
   <%= htmlWebpackPlugin.tags.footer %>
   <!--------------------- MODAL SPACE SECTION --------------------->
   <section id="modals"></section>
+  <%= htmlWebpackPlugin.tags.modcookie %>
   <!--------------------- TEMPLATE CARD PRODUCT SECTION --------------------->
   <template id="tmp_card2">
     <div class="col-lg-10 col-md-12 col-12 px-0 mx-auto">

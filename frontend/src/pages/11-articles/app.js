@@ -3,7 +3,7 @@
 import './style.css';
 
 import { Modal } from 'bootstrap/dist/js/bootstrap.bundle';
-const { modalShow, getError, fillNavbar, genDropTypes, genSearchBox, genCards, watchCards, IP } = require('../../js/helper.js');
+const { modalShow, getError, fillNavbar, genDropTypes, genSearchBox, genCards, watchCards, modalCookie, IP } = require('../../js/helper.js');
 
 process.env.NODE_ENV === 'development' && firebase.initializeApp({
   apiKey: "AIzaSyALOIRaODueInxmXbrnkT6l8aQ5JWgE6Vc",
@@ -19,29 +19,63 @@ const d= document;
 const urlp = new URLSearchParams(window.location.search);
 
 if( urlp.get('fr') == "s" ) inp_search.value= urlp.get('cr');
-//if( urlp.get('fr') == "s" ) $lbl_title.textContent= "Articulos encontrados";
+
+const genBtnsPag= ( spaceID="", max=0 , curr=0 )=>{
+  const $groups= d.getElementById(spaceID).querySelectorAll('.btn-group');
+  if( !isNaN( curr ) ){
+    const ppage= 4;
+    const newMax= parseInt( max / ppage ) + 1;
+
+    let currPage= isNaN( curr ) ? 1 : Math.abs( curr );
+    currPage= 0 >= currPage ? 1 : currPage; 
+    currPage= currPage > newMax ? newMax : currPage;
+  
+    const $button= d.createElement('a');
+    $button.classList.add('btn');
+    $button.classList.add('btn-outline-dark');
+  
+    $button.textContent= "Atras";
+    $button.setAttribute('href',`/pages/articles/?fr=p&cr=${ currPage-1 }`)
+    currPage > 1 && $groups[0].appendChild( d.importNode( $button , true ) );
+    $button.setAttribute('href',`/pages/articles/?fr=p&cr=${ currPage+1 }`)
+    $button.textContent= "Siguiente";
+    newMax > currPage && $groups[2].appendChild( d.importNode( $button , true ) );
+  
+    for (let i = 1; i < newMax + 1; i++) {
+      const $button2= d.createElement('a');
+      $button2.classList.add('btn');
+      $button2.setAttribute('href',`/pages/articles/?fr=p&cr=${ i }`)
+      $button2.classList.add( (i) == currPage ? "btn-dark" : "btn-outline-dark" );
+      $button2.textContent= i;
+      $groups[1].appendChild( d.importNode( $button2 , true ) );
+    }
+  }
+};
+
 const main= async()=>{
   //const { modalHide }= spinnerShow( Modal , "modals" , "tmp_spinner" );
 
   try {
     const $lbl_title= document.getElementById('lbl_title');
 
-    const res= await fetch(`${IP}/APIshop/first/common`);
+    const res= await fetch(`${IP}/APIshop/central/get-same`);
     const json= await res.json();
 
     if( !res.ok ) throw { status: res.status , message: `Fetch code error -> ${ res.statusText }` };
     if( !json.status ) throw { status: json.status , message: `Server code error -> ${ json.data }` };
     const { names, types }= json.data;
 
-    if( urlp.get('fr') == "t" ) $lbl_title.textContent= `Categoria ${ types.filter( el=> el['type'] == urlp.get('cr') )[0]['name'] }`;
+    const unique= types.filter( el=> el['type'] == urlp.get('cr') );
+    if( urlp.get('fr') == "t" && unique.length > 0 ) $lbl_title.textContent= `Categoria ${ unique[0]['name'] }`;
     genDropTypes( "drp_types" , types );
     genSearchBox( "#sec_navbar .btn-group-vertical" , "inp_search" , names );
+    genBtnsPag( "sec_pages" , names.length , urlp.get('cr') );
   } catch (err) { modalShow( Modal , "modals" , "tmp_modal" , getError(err) ); console.log( 220 , err ) };
 
   try {
     const $sec_nresults= document.getElementById('sec_nresults');
 
-    const res= await fetch(`${IP}/APIshop/first/articles${window.location.search}`);
+    const res= await fetch(`${IP}/APIshop/central/search-articles${window.location.search}`);
     const json= await res.json();
     
     if( !res.ok ) throw { status: res.status , message: `Fetch code error -> ${ res.statusText }` };
@@ -76,6 +110,8 @@ const main= async()=>{
       'lbl_cart' 
     );
   });
+
+  modalCookie('.modal-cookie');
   
   //setTimeout(() => modalHide(), 500);
 };

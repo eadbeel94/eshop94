@@ -3,7 +3,7 @@
 import './style.css';
 
 import { Modal } from 'bootstrap/dist/js/bootstrap.bundle';
-const { modalShow, getError, fillNavbar, genDropTypes, genSearchBox, genCards, watchCards , IP } = require('../../js/helper.js');
+const { modalShow, getError, fillNavbar, genDropTypes, genSearchBox, genCards, watchCards, modalCookie, IP } = require('../../js/helper.js');
 
 process.env.NODE_ENV === 'development' && firebase.initializeApp({
   apiKey: "AIzaSyALOIRaODueInxmXbrnkT6l8aQ5JWgE6Vc",
@@ -27,7 +27,7 @@ const main= async()=>{
   $btns[3].onclick= () => window.open('/pages/articles/?fr=p&cr=1','_self');
 
   try {
-    const res= await fetch(`${IP}/APIshop/first/common`);
+    const res= await fetch(`${IP}/APIshop/central/get-same`);
     const json= await res.json();
     if( !res.ok ) throw { status: res.status , message: `Fetch code error -> ${ res.statusText }` };
     if( !json.status ) throw { status: json.status , message: `Server code error -> ${ json.data }` };
@@ -38,7 +38,7 @@ const main= async()=>{
   } catch (err) { modalShow( Modal , "modals" , "tmp_modal" , getError(err) ); console.log( 30 , err ) };
 
   try {
-    const res= await fetch(`${IP}/APIshop/first/news`);
+    const res= await fetch(`${IP}/APIshop/central/get-news`);
     const json= await res.json();
 
     if( !res.ok ) throw { status: res.status , message: `Fetch code error -> ${ res.statusText }` };
@@ -68,6 +68,8 @@ const main= async()=>{
       'lbl_cart' 
     );
   });
+
+  modalCookie('.modal-cookie');
   
   //setTimeout(() => modalHide(), 500);
 };

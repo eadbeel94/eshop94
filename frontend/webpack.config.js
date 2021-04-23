@@ -13,7 +13,8 @@ const outFiles= [{},[]];
 const inpFiles= [
   ['main','01-main','/index.html'],
   ['error','05-error','/404.html'],
-  //['about','07-about','/pages/about/index.html'],
+  ['about','07-about','/pages/about/index.html'],
+  ['privacity','08-privacity','/pages/privacity/index.html'],
   ['articles','11-articles','/pages/articles/index.html'],
   ['product','12-product','/pages/product/index.html'],
   ['cart','15-cart','/pages/cart/index.html'],
@@ -40,6 +41,7 @@ inpFiles.forEach( r =>{
           tmodal: readFileSync( join( __dirname, './src/template/t_modal.html' ) ),
           tspinner: readFileSync( join( __dirname, './src/template/t_spinner.html' ) ),
           tscripts: readFileSync( join( __dirname, `./src/template/t_script${ prod ? "P" : "D" }.html` ) ),
+          modcookie: readFileSync( join( __dirname, './src/template/t_modCookie.html' ) )
           //IP: prod ? '' : 'http://localhost:3300'
         },
       }

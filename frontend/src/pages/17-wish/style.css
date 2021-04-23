@@ -1,5 +1,5 @@
 #sec_body17 .mainCard{
-  min-height: 70vh;
+  min-height: 75vh;
   margin: 1rem;
   border: 0;
   border-radius: 0;
@@ -59,11 +59,12 @@
   font-size: 20px;
   overflow: hidden;
   transform: rotate( 45deg );
-  width: 350px;
-  height: 35px;
-  top: 40px;
-  right: -120px;
+  width: 250px;
+  height: 28px;
+  top: 50px;
+  right: -60px;
   text-transform: uppercase;
+  font-size: 16px;
 }
 
 /*------------ title side  ------------*/
@@ -133,4 +134,24 @@
 
 #sec_products .btn-success{
   visibility: hidden;
+}
+
+
+
+
+
+
+
+.emptyBox{
+  height: 70vh;
+  align-items: center;
+  justify-content: center;
+
+  font-family: poppins1; 
+  font-size: 3.5rem; 
+  overflow: hidden;
+}
+
+.emptyBox div{
+  text-align: center;
 }

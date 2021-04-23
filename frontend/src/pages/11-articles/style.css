@@ -1,5 +1,5 @@
 #sec_body11{
-  min-height: 70vh;
+  min-height: 75vh;
 }
 
 .emptyBox{
@@ -14,4 +14,10 @@
 
 .emptyBox div{
   text-align: center;
+}
+
+#sec_pages{
+  display: flex; 
+  justify-content: center; 
+  margin-bottom: 1rem;
 }

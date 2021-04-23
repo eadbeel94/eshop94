@@ -1,5 +1,5 @@
 #sec_body15{
-  min-height: 70vh;
+  min-height: 75vh;
 }
 
 #sec_body15 .card{
@@ -112,6 +112,7 @@
   overflow: hidden;
   font-family: poppins1;
   font-size: 17px;
+  text-transform: capitalize;
 }
 
 #sec_products .bottom{
