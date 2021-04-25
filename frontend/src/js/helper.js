@@ -1,10 +1,11 @@
 /** @namespace Frontend/service */
 
 const d= document;
-const IP= "http://localhost:5001/driveshop5/us-central1/shop";
+const prod= process.env.NODE_ENV !== 'development';
+const IP= !prod ? "http://localhost:5000" : "";  //const IP= "http://localhost:5001/driveshop5/us-central1/shop";
 const { Modal }= require('bootstrap/dist/js/bootstrap.bundle');
 
-const modalShow= ( classModal , spaceID="" , templateID="" , body="" , btns=1 , cb ) =>{            //Create a Html Modal empty
+const modalShow= ( spaceID="" , templateID="" , body="" , btns=1 , cb ) =>{            //Create a Html Modal empty
     
   const $sec= d.getElementById(spaceID);
   const $fragment= d.createDocumentFragment();
@@ -18,10 +19,10 @@ const modalShow= ( classModal , spaceID="" , templateID="" , body="" , btns=1 , 
   d.querySelectorAll('.modal-backdrop').forEach( el => el.outerHTML= "" );
   $sec.appendChild($fragment);
 
-  const modal= new classModal(`#${spaceID} .modal`);
+  const modal= new Modal(`#${spaceID} .modal`);
   modal.show();
 
-  btns == 2 && ($sec.querySelector('.btn-outline-dark').onclick= ()=>{
+  btns == 2 && ($sec.querySelector('.btn-outline-light2').onclick= ()=>{
     cb(); modal.hide();
   });
   return { modalHide: ()=>modal.hide() };
@@ -82,7 +83,7 @@ const fillNavbar= async (
     $btn_login.disabled= true;
     $btn_logout.disabled= false;
     try {
-      const res= await fetch(`${IP}/APIshop/cart/get-cli-counters?id=${ userInfo.uid }`);
+      const res= await fetch(`${IP}/APIshop/cart/get-cli-counters?id=${ userInfo.uid }&accepted=${ localStorage.getItem('accepted') }`);
       const json= await res.json();
 
       if( !res.ok ) throw { status: res.status , message: `${ res.statusText }` };
@@ -91,16 +92,16 @@ const fillNavbar= async (
       
       $lbl_wish.textContent= wish;
       $lbl_cart.textContent= cart;
-    } catch (err) { modalShow( Modal , "modals" , "tmp_modal" , getError(err) ); console.log( 100 , err ) };
-    $btn_wish.onclick= ()=> window.open('/pages/wish','_self');
-    $btn_cart.onclick= ()=> window.open('/pages/cart','_self');
+    } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 100 , err ) };
+    $btn_wish.onclick= ()=> window.open(`${ prod ? "/projects/eshop94" : "" }/pages/wish`,'_self');
+    $btn_cart.onclick= ()=> window.open(`${ prod ? "/projects/eshop94" : "" }/pages/cart`,'_self');
   }else{
-    const commonModal= ()=> modalShow( Modal , "modals" , "tmp_modal" , "Necesitas iniciar sesion para poder continuar" );
+    const commonModal= ()=> modalShow( "modals" , "tmp_modal" , "Necesitas iniciar sesion para poder continuar" );
     $btn_wish.onclick= commonModal;
     $btn_cart.onclick= commonModal;
   }
-  $btn_search.onclick= () => $inp_search.value.length > 3 && window.open(`/pages/articles/?fr=s&cr=${ encodeURIComponent($inp_search.value.toUpperCase().trim()) }`,'_self');
-  $inp_search.onkeyup= (ev) => ev.key === 'Enter' && ev.target.value.length > 3 && window.open(`/pages/articles/?fr=s&cr=${ encodeURIComponent(ev.target.value.toUpperCase().trim()) }`,'_self');
+  $btn_search.onclick= () => $inp_search.value.length > 3 && window.open(`${ prod ? "/projects/eshop94" : "" }/pages/articles/?fr=s&cr=${ encodeURIComponent($inp_search.value.toUpperCase().trim()) }`,'_self');
+  $inp_search.onkeyup= (ev) => ev.key === 'Enter' && ev.target.value.length > 3 && window.open(`${ prod ? "/projects/eshop94" : "" }/pages/articles/?fr=s&cr=${ encodeURIComponent(ev.target.value.toUpperCase().trim()) }`,'_self');
 };
 
 const genDropTypes= ( dropID="" , list=[] )=>{
@@ -108,7 +109,7 @@ const genDropTypes= ( dropID="" , list=[] )=>{
   const $fragment= d.createDocumentFragment();
   list.forEach( el=>{
     const $li= d.createElement('li');
-    $li.innerHTML= `<a class="dropdown-item" href="/pages/articles/?fr=t&cr=${ el.type }">${ el.name }</a>`;
+    $li.innerHTML= `<a class="dropdown-item" href="${ prod ? "/projects/eshop94" : "" }/pages/articles/?fr=t&cr=${ el.type }">${ el.name }</a>`;
     $fragment.appendChild($li);
   });
   $dropdown.appendChild($fragment);
@@ -128,7 +129,7 @@ const genSearchBox= ( spaceID="" , inputID="" , list=[] )=>{
       matchs.forEach( el=> {
         const $a= d.createElement('a'); 
         $a.innerHTML= `<i class="bi bi-search pr-2"></i> ${ el }`;
-        $a.setAttribute('href',`/pages/articles/?fr=s&cr=${ encodeURIComponent(el.toUpperCase().trim()) }`);
+        $a.setAttribute('href',`${ prod ? "/projects/eshop94" : "" }/pages/articles/?fr=s&cr=${ encodeURIComponent(el.toUpperCase().trim()) }`);
         $a.classList.add('btn');
         $a.classList.add('btn-outline-light');
         $fragment.appendChild($a)
@@ -148,7 +149,7 @@ const genCards= ( spaceID="" , templateID="" , list=[] )=>{
     $template.querySelector('img').setAttribute('src',el.purl)
     $template.querySelector('.card-title').textContent = `$${el.cost},00`;
     $template.querySelector('a').innerHTML= el.mname + `<i class="bi bi-arrow-up-right-square ps-2"></i>`;
-    $template.querySelector('a').setAttribute('href',`/pages/product/?pid=${ el.id }`);
+    $template.querySelector('a').setAttribute('href',`${ prod ? "/projects/eshop94" : "" }/pages/product/?pid=${ el.id }`);
     $template.querySelector('.version').textContent= el.ver;
     $template.querySelector('.btn:nth-child(1)').dataset.id= el.id;
     $template.querySelector('.btn:nth-child(1)').dataset.type= "wish";
@@ -172,7 +173,7 @@ const watchCards= ( spaceID="" , uid , lblWishID="" , lblCartID=""  )=>{
   $space.onclick= async (ev)=>{
     if( ev.target.matches('[data-id]') ){
       if( !uid ){
-        modalShow( Modal , "modals" , "tmp_modal" , "Necesitas iniciar sesion para poder continuar" );
+        modalShow( "modals" , "tmp_modal" , "Necesitas iniciar sesion para poder continuar" );
       }else{
         try {
           const send= { 
@@ -193,7 +194,7 @@ const watchCards= ( spaceID="" , uid , lblWishID="" , lblCartID=""  )=>{
           json.data.hasOwnProperty('cart') && (d.getElementById(lblCartID).textContent= json.data['cart']);
           json.data.hasOwnProperty('wish') && (d.getElementById(lblWishID).textContent= json.data['wish']);
           
-        } catch (err) { modalShow( Modal , "modals" , "tmp_modal" , getError(err) ); console.log( 200 , err ) };
+        } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 200 , err ) };
       }
 
     }
@@ -203,8 +204,12 @@ const watchCards= ( spaceID="" , uid , lblWishID="" , lblCartID=""  )=>{
 const modalCookie= ( modalId="" )=>{
   const $mod_Cookie= d.querySelector(modalId);
   const accepted= localStorage.getItem('accepted');
-  !accepted && new Modal($mod_Cookie).show();
+  !accepted && new Modal( $mod_Cookie, { backdrop: "static" } ).show();
   $mod_Cookie.addEventListener('hide.bs.modal', () => localStorage.setItem('accepted',true) );
-}
+};
 
-module.exports= { modalShow, spinnerShow, getError, fillNavbar, genDropTypes, genSearchBox, genCards, watchCards, modalCookie, IP };
+const getMXN= ( num= 0 ) =>{
+  return num.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+};
+
+module.exports= { modalShow, spinnerShow, getError, fillNavbar, genDropTypes, genSearchBox, genCards, watchCards, modalCookie, getMXN, prod, IP };

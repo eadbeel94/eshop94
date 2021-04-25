@@ -5,12 +5,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-import '../css/main.scss';
-
 import '../css/header.css';
 import '../css/card2.css';
 import '../css/modal2.css';
 import '../css/footer.css';
+
+import '../css/main.scss';
 
 import '../img/favicon.ico';
 import '../img/title.png';

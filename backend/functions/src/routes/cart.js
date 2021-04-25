@@ -1,63 +1,11 @@
-
-const { config }= require('firebase-functions');
 const { Router } = require("express");
 const router= Router();
 
-const { firestore , auth }= require('firebase-admin');
-//const categories= firestore().collection('cats');
+const { firestore }= require('firebase-admin');
 const products= firestore().collection('prods');
 const clients= firestore().collection('clis');
-//const sales= firestore().collection('sales');
 
-let keyStripe= { public: "" , private: "" };
-let IP= ["",""]
-if (process.env.NODE_ENV !== 'production') {
-  keyStripe= require('../keys/secretkeys.json');
-  IP= [`http://localhost:8080`,`http://localhost:5001`];
-}else{
-  keyStripe=  config().keys;
-  IP= [``,``];
-};
-
-const stripe= require('stripe')(keyStripe.private);
-const m= require('dayjs');
-
-const userSearch= async uid => {                   //Function for search user in database
-  let found= false;
-  let message= "";
-  try {
-    const cliDoc= await clients.doc( uid ).get();
-    found= cliDoc.exists;
-    if(!cliDoc.exists){
-      const udata= (await auth().getUser(uid)).toJSON();
-      delete udata.uid;
-      delete udata.providerData;                           //delete array providerDAta
-      Object.keys(udata).forEach(key => udata[key] === undefined ? delete udata[key] : {});  //delete undefined fields
-      const newClient = {                                     //Create new user object
-        sid: "",
-        cart: [],
-        wish: [],
-        uaddr: {},
-        uphone: "",
-        udata: udata
-      };
-      await clients.doc(uid).set(newClient);
-      found= true; 
-    }
-  } catch (err) { message= String(err); found= false; console.log(35, err);   }                                      
-  return { found , message };                                               //Return if data is found
-};
-
-const genConters= list =>{
-  const reducer= elements => {
-    let accum= 0;
-    elements.forEach( el=> accum= accum + Number(el[1]) );
-    return accum;
-  };
-  const wish= list.wish.length > 0 ? reducer(list.wish) : 0;
-  const cart= list.cart.length > 0 ? reducer(list.cart) : 0;
-  return { wish , cart }
-};
+const { userSearch , genConters }= require('./helper.js');
 
 router.get('/get-cli-counters', async (req,res)=>{    //getCart
   let status= false;
@@ -66,7 +14,7 @@ router.get('/get-cli-counters', async (req,res)=>{    //getCart
     if(req.query.id){ 
       const uid = req.query.id;
       const { found , message } = await userSearch(uid);
-      if( message.length > 2 ) throw { status: false, message: message }
+      if( message.length > 2 ) throw { status: false, message: message };
       if( found ){
         const cliSnap= await clients.where('__name__', '==' , uid ).select('cart','wish').get();
         const list = cliSnap.docs[0].data();
@@ -74,7 +22,8 @@ router.get('/get-cli-counters', async (req,res)=>{    //getCart
         status= true;
       }
     }
-  } catch (err) { data= err.message; status= false; console.log(120, err); };
+  } catch (err) { data= err.message; status= false; console.log(25, err); };
+  req.query.accepted && clients.doc(req.query.id).update({ accepted: req.query.accepted }).then();
   res.json({ status , data });
 });
 
@@ -116,7 +65,7 @@ router.get('/get-cli-cart', async (req,res)=>{        //getClient
         status= true;
       }
     }
-  } catch (err) { data= err.message; status= false; console.log(250, err); };
+  } catch (err) { data= err.message; status= false; console.log(70, err); };
   res.json({ status , data });
 });
 
@@ -149,7 +98,7 @@ router.post('/add-once-cli-cart', async (req,res)=>{  //addCart
         status= true;
       }
     }
-  } catch (err) { data= err.message; status= false; console.log(150, err); };
+  } catch (err) { data= err.message; status= false; console.log(100, err); };
   res.json({ status , data });
 });
 
@@ -173,7 +122,7 @@ router.put('/add-more-cli-cart', async (req,res)=>{   //add2Cart
         status= true;
       }
     }
-  } catch (err) { data= err.message; status= false; console.log(150, err); };
+  } catch (err) { data= err.message; status= false; console.log(125, err); };
   res.json({ status , data });
 });
 
@@ -196,8 +145,8 @@ router.put('/mod-cli-cart', async (req,res)=>{        //modCart
           let newEL= el;
           if( el[0] == prod ){
             if( oper == "plus" )        newEL[1]++;
-            else if ( oper == "minus" ) newEL[1]= newEL[1] == 0 ? 0 : newEL[1] - 1;  
-            else                        newEL[1]= cliQty > qty ? Number(qty) : Number(cliQty)
+            else if ( oper == "minus" ) newEL[1]= 0 >= newEL[1] ? 0 : newEL[1] - 1;  
+            else                        newEL[1]= cliQty > qty && qty > 0 ? Number(qty) : Number(cliQty)
 
             data.prod= newEL[1];
             if( newEL[1] == 0 )         newEL= undefined;
@@ -215,7 +164,7 @@ router.put('/mod-cli-cart', async (req,res)=>{        //modCart
         status= true;
       };
     };
-  } catch (err) { data= err.message; status= false; console.log(290, err); };
+  } catch (err) { data= err.message; status= false; console.log(170, err); };
   res.json({ status , data });
 });
 
@@ -245,7 +194,7 @@ router.put('/move-cli-cart', async (req,res)=>{       //moveCart
         status= true;
       };
     };
-  } catch (err) { data= err.message; status= false; console.log(320, err); };
+  } catch (err) { data= err.message; status= false; console.log(200, err); };
   res.json({ status , data });
 });
 

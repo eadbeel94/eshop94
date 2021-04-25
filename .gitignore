@@ -9,6 +9,10 @@ frontend/node_modules/
 frontend/src/css/bootstrap.css
 frontend/src/font/
 frontend/src/img/
+frontend/src/js/firebase.init.json
 frontend/www
+frontend/www2
+frontend/www3
 frontend/package-lock.json
 other/
+t-second/

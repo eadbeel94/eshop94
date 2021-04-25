@@ -1,20 +1,9 @@
-
-const { config }= require('firebase-functions');
 const { Router } = require("express");
 const router= Router();
 
-const { firestore , auth }= require('firebase-admin');
+const { firestore }= require('firebase-admin');
 const categories= firestore().collection('cats');
 const products= firestore().collection('prods');
-//const clients= firestore().collection('clis');
-//const sales= firestore().collection('sales');
-
-let IP= ["",""]
-if (process.env.NODE_ENV !== 'production') {
-  IP= [`http://localhost:8080`,`http://localhost:5001`];
-}else{
-  IP= [``,``];
-};
 
 router.get('/get-same', async (req,res)=>{      // common
   let status= false;
@@ -32,7 +21,7 @@ router.get('/get-same', async (req,res)=>{      // common
 
     data= { types , names };
     status= true;
-  } catch (err) { data= err.message; status= false; console.log(80, err); };
+  } catch (err) { data= err.message; status= false; console.log(25, err); };
   res.json({ status , data });
 });
 
@@ -49,7 +38,7 @@ router.get('/get-news', async (req,res)=>{      //  news
     });
     data= { news };
     status= true;
-  } catch (err) { data= err.message; status= false; console.log(100, err); };
+  } catch (err) { data= err.message; status= false; console.log(40, err); };
   res.json({ status , data });
 });
 
@@ -65,7 +54,7 @@ router.get('/get-article', async (req,res)=>{    //getArticle
       data= { prod };
       status= true;
     }
-  } catch (err) { data= err.message; status= false; console.log(160, err); };
+  } catch (err) { data= err.message; status= false; console.log(60, err); };
   res.json({ status , data });
 });
 
@@ -115,66 +104,8 @@ router.get('/search-articles', async (req,res)=>{ //articles
       data= { prods };
     }
     status= true      //  }else throw { message: "Solicitud imposible de procesar" }
-  } catch (err) { data= err.message; status= false; console.log(200, err); };
+  } catch (err) { data= err.message; status= false; console.log(100, err); };
   res.json({ status , data });
 });
 
 module.exports = router;
-
-/*
-(async ()=>{
-  
-  const snapshot = await categories.get();
-  snapshot.forEach(doc => {
-    console.log(doc.id, '=>', doc.data());
-  });
-
-
-  const res = await categories.add({
-    name: 'Tokyo',
-    country: 'Japan'
-  });
-
-
-  try {
-    //const fs= require('fs');
-    //const path= require('path');
-    //let info= fs.readFileSync( path.join(  __dirname , '../../../../other/la-liga-coleccionable-export.json' ) );
-
-    info = JSON.parse( info.toString() );
-    const cats= Object.entries( info.cats ).map( el => el[1] )
-    for (let i = 0; i < cats.length; i++) {
-      await categories.add({
-        ord: cats[i]['number'],
-        name: cats[i]['title'],
-        type: cats[i]['type']
-      })
-    }
-
-    info = JSON.parse( info.toString() );
-    const prods= Object.entries( info.prod ).map( el => el[1] )
-    for (let i = 0; i < 10; i++) {
-      await products.add({
-        clas:   prods[i]['classify']    || '',
-        cpath:  prods[i]['cloudpath']   || '',
-        cost:   prods[i]['value']       || '',
-        desc:   prods[i]['description'] == "undefined" ? '' : prods[i]['description'],
-        mname:  prods[i]['name']        || '',
-        nname:  prods[i]['newname']     || '',
-        oname:  prods[i]['oldname']     || '',
-        new:    true,
-        purl:   prods[i]['publicurl']   || '',
-        qty:    prods[i]['quantity']    || '',
-        type:   prods[i]['type']        || '',
-        upl_at: prods[i]['uploaded_at'] || '',
-        ver:    prods[i]['version']     || '',
-        year:   prods[i]['year']        || ''
-      })
-    }
-
-  } catch (err) {
-    console.log( 27 , err )
-  }
-
-})()
-*/

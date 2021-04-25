@@ -9,14 +9,14 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/APIshop/**",
+        "function": "shop"
+      }
     ]
   },
-  "rewrites": [
-    {
-      "source": "/APIshop/*",
-      "function": "shop"
-    }
-  ],
   "storage": {
     "rules": "storage.rules"
   }

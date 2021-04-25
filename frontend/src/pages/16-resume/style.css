@@ -49,6 +49,14 @@
   font-size: 18px;
 }
 
+#sec_body16 tbody tr:nth-last-child(2) p{
+  margin: 0;
+}
+
+#sec_body16 tbody tr:nth-last-child(2) td{
+  padding-bottom: 0;
+}
+
 #sec_body16 tbody tr:last-child{
   font-size: 24px;
 }

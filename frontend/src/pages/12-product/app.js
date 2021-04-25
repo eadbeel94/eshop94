@@ -1,26 +1,12 @@
 /** @namespace Frontend/01-login */
 
 import './style.css';
+const { modalShow, getError, fillNavbar, genDropTypes, genSearchBox, modalCookie, getMXN, IP } = require('../../js/helper.js');
 
-import { Modal } from 'bootstrap/dist/js/bootstrap.bundle';
-const { modalShow, getError, fillNavbar, genDropTypes, genSearchBox, modalCookie, IP } = require('../../js/helper.js');
-
-process.env.NODE_ENV === 'development' && firebase.initializeApp({
-  apiKey: "AIzaSyALOIRaODueInxmXbrnkT6l8aQ5JWgE6Vc",
-  authDomain: "driveshop5.firebaseapp.com",
-  databaseURL: "https://driveshop5.firebaseio.com",
-  projectId: "driveshop5",
-  storageBucket: "driveshop5.appspot.com",
-  messagingSenderId: "878066266054",
-  appId: "1:878066266054:web:0a4e438129c19e070fccc7"
-});
+process.env.NODE_ENV === 'development' && firebase.initializeApp(require('../../js/firebase.init.json'));
 const fauth= firebase.auth;
 const d= document;
 const urlp = new URLSearchParams(window.location.search);
-
-const getMXN= ( num= 0 ) =>{
-  return num.toLocaleString(undefined, { maximumFractionDigits: 2, minimumFractionDigits: 2 });
-};
 
 const genCards2= ( spaceID="" , templateID="" , el={} )=>{
   const $space= d.querySelector(spaceID);
@@ -33,7 +19,7 @@ const genCards2= ( spaceID="" , templateID="" , el={} )=>{
   $template.querySelector('.crd-label').textContent= el.clas;
   $template.querySelector('.crd-edition').textContent= "Edicion: " + el.ver;
   $template.querySelector('.crd-year').textContent= "Año: " + el.year;
-  $template.querySelector('.crd-cost').textContent= "$ " + getMXN(el.cost) + ",00";
+  $template.querySelector('.crd-cost').textContent= "$ " + getMXN(el.cost);
   $template.querySelector('.crd-desc').textContent= el.desc || el.mname;
   $template.querySelector('.crd-disp').textContent=  `Disponible: ${ enable ? el.qty : "0" }`;
 
@@ -115,7 +101,7 @@ const watchCards2= ( spaceID="" , uid )=>{
             const { cart }= json.data;
             d.getElementById('lbl_cart').textContent= cart;
           }
-        } catch (err) { modalShow( Modal , "modals" , "tmp_modal" , getError(err) ); console.log( 220 , err ) };
+        } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 120 , err ) };
       }
     };
 
@@ -123,8 +109,6 @@ const watchCards2= ( spaceID="" , uid )=>{
 };
 
 const main= async()=>{
-  //const { modalHide }= spinnerShow( Modal , "modals" , "tmp_spinner" );
-
   try {
     const res= await fetch(`${IP}/APIshop/central/get-same`);
     const json= await res.json();
@@ -135,9 +119,8 @@ const main= async()=>{
 
     genDropTypes( "drp_types" , types );
     genSearchBox( "#sec_navbar .btn-group-vertical" , "inp_search" , names );
-  } catch (err) { modalShow( Modal , "modals" , "tmp_modal" , getError(err) ); console.log( 220 , err ) };
+  } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 140 , err ) };
 
-  
   try {
     const $sec_nresults= d.getElementById('sec_nresults');
 
@@ -151,28 +134,27 @@ const main= async()=>{
     prod.hasOwnProperty('mname') && genCards2("#sec_body12 div","tmp_card2", prod);
     $sec_nresults.style.display= prod.hasOwnProperty('mname') ? "none" : "unset";
     
-  } catch (err) { modalShow( Modal , "modals" , "tmp_modal" , getError(err) ); console.log( 220 , err ) };
+  } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 150 , err ) };
   
-
   fauth().onAuthStateChanged( user => {
-    fillNavbar(
-      user,
-      'inp_search',
-      'btn_search',
-      'btn_wish',
-      'btn_cart',
-      'btn_login',
-      'btn_logout',
-      'lbl_account',
-      'lbl_wish',
-      'lbl_cart'
-    );
-    watchCards2("#sec_body12 div", user.uid)
+    if( user ){
+      fillNavbar(
+        user,
+        'inp_search',
+        'btn_search',
+        'btn_wish',
+        'btn_cart',
+        'btn_login',
+        'btn_logout',
+        'lbl_account',
+        'lbl_wish',
+        'lbl_cart'
+      );
+      watchCards2("#sec_body12 div", user.uid);
+    }
   });
 
   modalCookie('.modal-cookie');
-  
-  //setTimeout(() => modalHide(), 500);
 };
 
 window.onload= main;

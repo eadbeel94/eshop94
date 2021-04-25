@@ -2,18 +2,10 @@
 
 import './style.css';
 
-import { Collapse , Modal } from 'bootstrap/dist/js/bootstrap.bundle';
-const { modalShow, getError, fillNavbar, genDropTypes, genSearchBox, modalCookie, IP } = require('../../js/helper.js');
+import { Collapse } from 'bootstrap/dist/js/bootstrap.bundle';
+const { modalShow, getError, fillNavbar, genDropTypes, genSearchBox, modalCookie, prod, IP } = require('../../js/helper.js');
 
-process.env.NODE_ENV === 'development' && firebase.initializeApp({
-  apiKey: "AIzaSyALOIRaODueInxmXbrnkT6l8aQ5JWgE6Vc",
-  authDomain: "driveshop5.firebaseapp.com",
-  databaseURL: "https://driveshop5.firebaseio.com",
-  projectId: "driveshop5",
-  storageBucket: "driveshop5.appspot.com",
-  messagingSenderId: "878066266054",
-  appId: "1:878066266054:web:0a4e438129c19e070fccc7"
-});
+process.env.NODE_ENV === 'development' && firebase.initializeApp(require('../../js/firebase.init.json'));
 const fauth= firebase.auth;
 const d= document;
 
@@ -22,7 +14,12 @@ const $sec_login= d.getElementById('sec_login');
 const $btn_cart= d.getElementById('btn_cart');
 const $lbl_qty= d.getElementById('lbl_qty');
 const $lbl_subtotal= d.getElementById('lbl_subtotal');
+const $lbl_deliv= d.getElementById('lbl_deliv');
 const $lbl_total= d.getElementById('lbl_total');
+const $btn_toogleL= d.getElementById("btn_toogleL");
+const $btn_toogleR= d.getElementById("btn_toogleR");
+//const $chk_left1= d.getElementById('chk_left1');
+//const $chk_right1= d.getElementById('chk_right1');
 
 const estados= require('../../js/estados.json');
 const municipios= require('../../js/estados-municipios.json');
@@ -40,7 +37,7 @@ const genCards2= ( spaceID="" , templateID="" , list=[] )=>{
       $template.querySelector('img').setAttribute('src',el.purl);
       $template.querySelector('.crd-label').textContent= el.clas;
       $template.querySelector('.crd-link').textContent= el.mname;
-      $template.querySelector('.crd-link').setAttribute('href',`/pages/product/?pid=${ el.id }`);
+      $template.querySelector('.crd-link').setAttribute('href',`/projects/eshop94/pages/product/?pid=${ el.id }`);
       $template.querySelector('.crd-cost').textContent = `$${el.cost},00`; 
       $template.querySelector('.card-body p').textContent = el.desc || el.mname; 
       $template.querySelector('.crd-bottom').textContent = el.ver; 
@@ -83,14 +80,16 @@ const watchCards2= ( spaceID="" , uid )=>{
 
       $lbl_qty.textContent= qty;
       $lbl_subtotal.textContent= `$ ${total},00`;
-      $lbl_total.textContent= `$ ${total},00`;
+      $lbl_total.textContent= `$ ${ $btn_toogleR.checked ? ( total + 100 ) : total },00`;
 
       if( !qty ) {
         $sec_nresults.style.display= "unset";
         $sec_login.style.display= "none";
+        $lbl_deliv.textContent= `$ 0.00`;
+        $lbl_total.textContent= `$ 0.00`;
       }
       
-    } catch (err) { modalShow( Modal , "modals" , "tmp_modal" , getError(err) ); console.log( 200 , err ) };
+    } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 90 , err ) };
   }
   $space.onchange= (ev)=>{
     if( ev.target.matches('input[data-id]') ){
@@ -129,10 +128,63 @@ const processPay= async ( info={} ) =>{
 
     if( !res.ok ) throw { status: res.status , message: `${ res.statusText }` };
     if( !json.status ) throw { status: json.status , message: `${ json.data }` };
-    const { publicKey , sessionId }= json.data; 
-    await Stripe( publicKey ).redirectToCheckout({ sessionId })
+    const { url }= json.data;
+    window.open(url,'_self');
+
+    //const { publicKey , sessionId }= json.data; 
+    //await Stripe( publicKey ).redirectToCheckout({ sessionId })
     
-  } catch (err) { modalShow( Modal , "modals" , "tmp_modal" , getError(err) ); console.log( 200 , err ) };
+  } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 140 , err ) };
+};
+
+const modalBody4= ()=>{
+  return `
+    <h5 class="text-justify mb-3">
+      Para poder probar de manera correcta la pasarela de pago de <strong>Mercado Pago</strong>, porfavor solo utilice estas credenciales de acceso:
+    </h5>
+
+    <table class="table table-dark table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Criterio</th>
+          <th scope="col">Descripcion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Tarjeta</th>
+          <td>VISA</td>
+        </tr>
+        <tr>
+          <th scope="row">Numero</th>
+          <td>4075 5957 1648 3764</td>
+        </tr>
+        <tr>
+          <th scope="row">Codigo de seguridad</th>
+          <td>123</td>
+        </tr>
+        <tr>
+          <th scope="row">Fecha de vencimiento</th>
+          <td>11/25</td>
+        </tr>
+        <tr>
+          <th scope="row"></th>
+          <td></td>
+        </tr>
+        <tr>
+          <th scope="row">E-mail del<p class="mb-0">usuario</p></th>
+          <td>test_user_69518536 <p class="mb-0">@testuser.com</p></td>
+        </tr>
+        <tr>
+          <th scope="row">Password</th>
+          <td>qatest6741</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4 class="text-justify text-warning">Nota: No utilice datos reales para esta prueba</h4>
+    <h5>Para mas informacion puedes visitar el siguiente link: <a class="text-info" href="https://www.mercadopago.com.mx/developers/es/guides/online-payments/checkout-pro/test-integration#bookmark_tarjetas_de_prueba" target="_blank">mercadopago.com.mx© </a></span></h5>
+  `.replace('\n','');
 }
 
 const watchDrp= ( uid, name, email )=>{
@@ -142,14 +194,27 @@ const watchDrp= ( uid, name, email )=>{
   const $collapses= d.querySelectorAll('#sec_login .collapse');
   const $collapseL= new Collapse( $collapses[0] , { toggle: false });
   const $collapseR= new Collapse( $collapses[1] , { toggle: false });
+
+  const getSub= ( mytag )=>{
+    let label= mytag.textContent;
+    label= label.split(" ");
+    label= label[1]
+    label= label.replace(",",".");
+    label= Number(label)
+    return label
+  }
   
-  d.getElementById("btn_toogleL").onclick= ()=>{
+  $btn_toogleL.onclick= ()=>{
     $collapseL.show();
     $collapseR.hide();
+    $lbl_deliv.textContent= `$ 0.00`;
+    $lbl_total.textContent= `$ ${ getSub( $lbl_subtotal ) }.00`;
   };
-  d.getElementById("btn_toogleR").onclick= ()=>{
+  $btn_toogleR.onclick= ()=>{
     $collapseL.hide();
     $collapseR.show();
+    $lbl_deliv.textContent= `$ 100.00`;
+    $lbl_total.textContent= `$ ${ getSub( $lbl_subtotal ) + 100 }.00`;
   };
 
   //Collapse left side
@@ -168,7 +233,7 @@ const watchDrp= ( uid, name, email )=>{
       phone: undefined,
       addr: undefined
     }
-    processPay( send );
+    modalShow( "modals" , "tmp_modal" , modalBody4() , 2 , ()=>processPay( send ) );
   };
 
   //Collapse right side
@@ -213,20 +278,22 @@ const watchDrp= ( uid, name, email )=>{
       email: ev.target[3].value,
       phone: ev.target[4].value || '',
       addr: {
-        line1: ev.target[7].value + " #" + ev.target[8].value + " Col: " + ev.target[10].value,
-        city: ev.target[6].value,
-        country: 'MX',
-        line2: ev.target[11].value || " ",
-        postal_code: ev.target[9].value,
-        state: ev.target[5].value
-      } 
+        zip_code:       ev.target[9].value,
+        street_name:    ev.target[7].value,
+        street_number:  Number(ev.target[8].value),
+        floor:          ev.target[11].value || " ",
+        apartment:      ev.target[10].value,
+        city_name:      ev.target[6].value,
+        state_name:     ev.target[5].value,
+        country_name:   'MX'
+      }
     }
-    processPay( send );
+    modalShow( "modals" , "tmp_modal" , modalBody4() , 2 , ()=>processPay( send ) );
+    //processPay( send );
   };
-}
+};
 
 const main= async()=>{
-  //const { modalHide }= spinnerShow( Modal , "modals" , "tmp_spinner" );
   try {
     const res= await fetch(`${IP}/APIshop/central/get-same`);
     const json= await res.json();
@@ -237,53 +304,56 @@ const main= async()=>{
 
     genDropTypes( "drp_types" , types );
     genSearchBox( "#sec_navbar .btn-group-vertical" , "inp_search" , names );
-  } catch (err) { modalShow( Modal , "modals" , "tmp_modal" , getError(err) ); console.log( 220 , err ) };
+  } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 240 , err ) };
 
   fauth().onAuthStateChanged( async user => {
+    if( !user ){
+      window.open(`${ prod ? "/projects/eshop94" : "" }/404.html`,'_self');
+    }else{
+      d.getElementById('lbl_email').textContent= user.email;
 
-    d.getElementById('lbl_email').textContent= user.email;
-
-    fillNavbar(
-      user,
-      'inp_search',
-      'btn_search',
-      'btn_wish',
-      'btn_cart',
-      'btn_login',
-      'btn_logout',
-      'lbl_account',
-      'lbl_wish',
-      'lbl_cart'
-    );
-    try {
-
-      const res= await fetch(`${IP}/APIshop/cart/get-cli-cart?id=${ user.uid }&type=cart`);
-      const json= await res.json();
+      fillNavbar(
+        user,
+        'inp_search',
+        'btn_search',
+        'btn_wish',
+        'btn_cart',
+        'btn_login',
+        'btn_logout',
+        'lbl_account',
+        'lbl_wish',
+        'lbl_cart'
+      );
+      try {
   
-      if( !res.ok ) throw { status: res.status , message: `Fetch code error -> ${ res.statusText }` };
-      if( !json.status ) throw { status: json.status , message: `Server code error -> ${ json.data }` };
-      const { cart , allQty , total }= json.data;
-      //console.log( json.data )
-
-      if( !cart || 0 >= cart.length ) $sec_nresults.style.display= "unset";
-      else $sec_login.style.display= "unset";
-
-      $lbl_qty.textContent= allQty;
-      $lbl_subtotal.textContent= `$ ${total},00`;
-      $lbl_total.textContent= `$ ${total},00`;
-      
-      genCards2( "#sec_products" , "tmp_card2" , cart );
-      watchCards2( "#sec_products" , user.uid );
-      watchDrp( user.uid, user.displayName, user.email );
-
-    } catch (err) { modalShow( Modal , "modals" , "tmp_modal" , getError(err) ); console.log( 250 , err ) };
+        const res= await fetch(`${IP}/APIshop/cart/get-cli-cart?id=${ user.uid }&type=cart`);
+        const json= await res.json();
+    
+        if( !res.ok ) throw { status: res.status , message: `Fetch code error -> ${ res.statusText }` };
+        if( !json.status ) throw { status: json.status , message: `Server code error -> ${ json.data }` };
+        const { cart , allQty , total }= json.data;
+  
+        if( !cart || 0 >= cart.length ) $sec_nresults.style.display= "unset";
+        else $sec_login.style.display= "unset";
+  
+        $lbl_qty.textContent= allQty;
+        $lbl_subtotal.textContent= `$ ${total},00`;
+        $lbl_total.textContent= `$ ${ $btn_toogleR.checked ? ( total + 100 ) : total },00`;
+        
+        genCards2( "#sec_products" , "tmp_card2" , cart );
+        watchCards2( "#sec_products" , user.uid );
+        watchDrp( user.uid, user.displayName, user.email );
+  
+      } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 290 , err ) };
+    };
   });
 
   modalCookie('.modal-cookie');
-
-  //setTimeout(() => modalHide(), 500);
 };
 
 window.onload= main;
 document.getElementById('btn_login').onclick= () => fauth().signInWithRedirect(new fauth.GoogleAuthProvider());
 document.getElementById('btn_logout').onclick= () => fauth().signOut();
+
+//new Modal('.modal3').show()
+//modalShow( "modals" , "tmp_modal" , "ALGO" )

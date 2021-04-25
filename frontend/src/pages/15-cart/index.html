@@ -87,9 +87,9 @@
                   <div class="form-group ps-2">
                     <div class="form-check">
                       <input class="form-check-input mt-2" type="checkbox" id="chk_left1" required>
-                      <label class="form-check-label" for="btn_checkbox1">
+                      <label class="form-check-label" for="chk_left1">
                         Acepto todos los terminos y condiciones explicados en
-                        <a href="/src/about/privacity.html" target="”_blank">
+                        <a href="/projects/eshop94/pages/privacity/" target="”_blank">
                           Terminos y condiciones <i class="bi bi-arrow-up-right-square"></i>
                         </a>
                       </label>
@@ -97,7 +97,7 @@
                   </div>
                   <button id="btn_payl" type="button" class="btn btn-lg btn-success" disabled>
                     Pagar con tarjeta mediante
-                    <p class="m-0"> stripe <i class="bi bi-cash ps-2"></i></p>
+                    <p class="m-0"> Mercado pago <i class="bi bi-cash ps-2"></i></p>
                   </button>
                 </section>
                 <!-- Right dropdown section (completly form) -->
@@ -173,11 +173,11 @@
                     <div class="form-row mb-2">
                       <div class="col">
                         <label>No de casa</label>
-                        <input type="text" class="form-control" placeholder="# 3412">
+                        <input type="number" class="form-control" placeholder="# 3412" required>
                       </div>
                       <div class="col">
                         <label>Codigo postal</label>
-                        <input type="number" class="form-control" placeholder="65000">
+                        <input type="number" class="form-control" placeholder="65000" required>
                       </div>
                     </div>
 
@@ -199,10 +199,10 @@
 
                     <div class="form-group pl-2">
                       <div class="form-check">
-                        <input class="form-check-input mt-2" type="checkbox" id="btn_checkbox1" required>
-                        <label class="form-check-label" for="btn_checkbox1">
+                        <input class="form-check-input mt-2" type="checkbox" id="chk_right1" required>
+                        <label class="form-check-label" for="chk_right1">
                           Acepto todos los terminos y condiciones explicados en
-                          <a href="/src/about/privacity.html" target="”_blank">
+                          <a href="/projects/eshop94/pages/privacity/" target="”_blank">
                             Terminos y condiciones <i class="bi bi-arrow-up-right-square"></i>
                           </a>
                         </label>
@@ -211,7 +211,7 @@
 
                     <button type="submit" class="btn btn-success mb-2 mt-3">
                       Pagar con tarjeta mediante
-                      <p class="m-0"> stripe <i class="bi bi-cash ps-2"></i></p>
+                      <p class="m-0"> Mercado pago <i class="bi bi-cash ps-2"></i></p>
                     </button>
                   </form>
                 </section>
@@ -226,9 +226,9 @@
                   <span>Nota del desarrollador : </span>
                   <span>La aplicacion esta en modo de prueba, por lo que solo se aceptara la
                     tarjeta de credito con numero </span>
-                  <span>4242-4242-4242-4242 </span>
+                  <span>4075-5957-1648-3764 </span>
                   <span>como metodo de pago de prueba, esto siguiendo las indicaciones de la
-                    aplicacion <a href="https://stripe.com/" target="_blank">stripe.com© </a></span>
+                    aplicacion <a href="https://www.mercadopago.com.mx/developers/es/guides/online-payments/checkout-pro/test-integration#bookmark_tarjetas_de_prueba" target="_blank">mercadopago.com.mx© </a></span>
                 </div>
               </div>
             </section>
@@ -293,7 +293,7 @@
   <!--------------------- TEMPLATE MODAL SECTION --------------------->
   <%= htmlWebpackPlugin.tags.tmodal %>
   <!--------------------- SCRIPT SECTION --------------------->
-  <script src="https://js.stripe.com/v3/"></script>
+  <!--<script src="https://js.stripe.com/v3/"></script>-->
   <%= htmlWebpackPlugin.tags.tscripts %>
 </body>
 </html>

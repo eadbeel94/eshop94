@@ -8,7 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const orgPath= './src/pages/';
-const desPath= './www/';
+const desPath= './www/projects/eshop94/';
 const outFiles= [{},[]];
 const inpFiles= [
   ['main','01-main','/index.html'],
@@ -24,7 +24,6 @@ const inpFiles= [
 outFiles[0]['common']= './src/js/common.js';
 
 inpFiles.forEach( r =>{  
-  //fse.readdirSync( path.join(__dirname, orgPath) ).forEach( name =>{
   outFiles[0][`${r[0]}`]= orgPath + r[1] + '/app.js';
   outFiles[1].push( new HtmlWebpackPlugin({
     template: join( __dirname, orgPath, r[1], 'index.html' ),
@@ -36,7 +35,7 @@ inpFiles.forEach( r =>{
           title: "Eshop 94",
           header: readFileSync( join( __dirname, './src/template/header.html' ) ),
           footer: readFileSync( join( __dirname, './src/template/footer.html' ) ),
-          icon: `<link rel="icon" href="/img/favicon.ico">`,
+          icon: `<link rel="icon" href="${ prod ? "/projects/eshop94" : "" }/img/favicon.ico">`,
           tcard: readFileSync( join( __dirname, './src/template/t_card.html' ) ),
           tmodal: readFileSync( join( __dirname, './src/template/t_modal.html' ) ),
           tspinner: readFileSync( join( __dirname, './src/template/t_spinner.html' ) ),
@@ -57,9 +56,9 @@ module.exports= {
   entry: outFiles[0],
   mode: prod ? 'production' : 'development',
   output: {
-    path: join(__dirname, 'www'),
+    path: join(__dirname, desPath ),
     filename: 'js/[name].bundle.js',
-    publicPath: '/'
+    publicPath: prod ? '/projects/eshop94/' : '/'
   },
   devServer: {
     contentBase: join(__dirname, 'www') //, hot: false, inline: false,

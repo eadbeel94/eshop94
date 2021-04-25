@@ -1,19 +1,9 @@
 /** @namespace Frontend/01-login */
 
 import './style.css';
-
-import { Modal } from 'bootstrap/dist/js/bootstrap.bundle';
 const { modalShow, getError, fillNavbar, genDropTypes, genSearchBox, genCards, watchCards, modalCookie, IP } = require('../../js/helper.js');
 
-process.env.NODE_ENV === 'development' && firebase.initializeApp({
-  apiKey: "AIzaSyALOIRaODueInxmXbrnkT6l8aQ5JWgE6Vc",
-  authDomain: "driveshop5.firebaseapp.com",
-  databaseURL: "https://driveshop5.firebaseio.com",
-  projectId: "driveshop5",
-  storageBucket: "driveshop5.appspot.com",
-  messagingSenderId: "878066266054",
-  appId: "1:878066266054:web:0a4e438129c19e070fccc7"
-});
+process.env.NODE_ENV === 'development' && firebase.initializeApp(require('../../js/firebase.init.json'));
 const fauth= firebase.auth;
 const d= document;
 const urlp = new URLSearchParams(window.location.search);
@@ -35,16 +25,16 @@ const genBtnsPag= ( spaceID="", max=0 , curr=0 )=>{
     $button.classList.add('btn-outline-dark');
   
     $button.textContent= "Atras";
-    $button.setAttribute('href',`/pages/articles/?fr=p&cr=${ currPage-1 }`)
+    $button.setAttribute('href',`/projects/eshop94/pages/articles/?fr=p&cr=${ currPage-1 }`)
     currPage > 1 && $groups[0].appendChild( d.importNode( $button , true ) );
-    $button.setAttribute('href',`/pages/articles/?fr=p&cr=${ currPage+1 }`)
+    $button.setAttribute('href',`/projects/eshop94/pages/articles/?fr=p&cr=${ currPage+1 }`)
     $button.textContent= "Siguiente";
     newMax > currPage && $groups[2].appendChild( d.importNode( $button , true ) );
   
     for (let i = 1; i < newMax + 1; i++) {
       const $button2= d.createElement('a');
       $button2.classList.add('btn');
-      $button2.setAttribute('href',`/pages/articles/?fr=p&cr=${ i }`)
+      $button2.setAttribute('href',`/projects/eshop94/pages/articles/?fr=p&cr=${ i }`)
       $button2.classList.add( (i) == currPage ? "btn-dark" : "btn-outline-dark" );
       $button2.textContent= i;
       $groups[1].appendChild( d.importNode( $button2 , true ) );
@@ -53,8 +43,6 @@ const genBtnsPag= ( spaceID="", max=0 , curr=0 )=>{
 };
 
 const main= async()=>{
-  //const { modalHide }= spinnerShow( Modal , "modals" , "tmp_spinner" );
-
   try {
     const $lbl_title= document.getElementById('lbl_title');
 
@@ -70,7 +58,7 @@ const main= async()=>{
     genDropTypes( "drp_types" , types );
     genSearchBox( "#sec_navbar .btn-group-vertical" , "inp_search" , names );
     genBtnsPag( "sec_pages" , names.length , urlp.get('cr') );
-  } catch (err) { modalShow( Modal , "modals" , "tmp_modal" , getError(err) ); console.log( 220 , err ) };
+  } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 70 , err ) };
 
   try {
     const $sec_nresults= document.getElementById('sec_nresults');
@@ -88,7 +76,7 @@ const main= async()=>{
       $sec_nresults.style.display= "none";
       genCards( "#sec_body11 div.row" , "tmp_card" , prods );
     }
-  } catch (err) { modalShow( Modal , "modals" , "tmp_modal" , getError(err) ); console.log( 40 , err ) };
+  } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 90 , err ) };
 
   fauth().onAuthStateChanged( user => {
     fillNavbar(
@@ -112,8 +100,6 @@ const main= async()=>{
   });
 
   modalCookie('.modal-cookie');
-  
-  //setTimeout(() => modalHide(), 500);
 };
 
 window.onload= main;
