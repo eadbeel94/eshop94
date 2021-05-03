@@ -30,7 +30,7 @@ router.get('/get-news', async (req,res)=>{      //  news
   let data;
   try {
     const news= [];
-    const newsProdSnap = await products.select('purl','cost','mname','ver','clas','new').where('new','==',true).limit(4).get();    //.where('new','==',true)
+    const newsProdSnap = await products.select('purl','cost','mname','ver','clas','new').where('new','==',true).limit(8).get();    //.where('new','==',true)
     newsProdSnap.docs.forEach( el=>{
       const info= el.data();
       info.id= el.id;   //m( el.updateTime.toMillis() ).format();

@@ -16,7 +16,7 @@ const genCards2= ( spaceID="" , templateID="" , list=[] )=>{
   const $fragment= d.createDocumentFragment();
   const $template= d.getElementById(templateID).content;
   list.forEach( el =>{
-    const enable= el.clas.toUpperCase() == "DISPONIBLE" || el.clas.toUpperCase() == "PREVENTA";
+    const enable= el.clas.toUpperCase() == "AVAILABLE";
 
     $template.querySelector('div').dataset.id= el.id;
     $template.querySelector('img').setAttribute('src',el.purl);
@@ -102,9 +102,7 @@ const watchCards2= ( spaceID="" , uid )=>{
   }
 };
 
-const main= async()=>{
-  //const { modalHide }= spinnerShow( Modal , "modals" , "tmp_spinner" );
-
+const showFirst= async ()=>{
   try {
     const res= await fetch(`${IP}/APIshop/central/get-same`);
     const json= await res.json();
@@ -116,7 +114,9 @@ const main= async()=>{
     genDropTypes( "drp_types" , types );
     genSearchBox( "#sec_navbar .btn-group-vertical" , "inp_search" , names );
   } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 130 , err ) };
+};
 
+const watchUser= ()=>{
   fauth().onAuthStateChanged( async user => {
     if( !user ){
       window.open(`${ prod ? "/projects/eshop94" : "" }/404.html`,'_self');
@@ -154,9 +154,13 @@ const main= async()=>{
       } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 160 , err ) };  
     }
   });
+}
 
+const main= async()=>{
+  //const { modalHide }= spinnerShow( Modal , "modals" , "tmp_spinner" );
+  await showFirst();
+  watchUser();
   modalCookie('.modal-cookie');
-  
   //setTimeout(() => modalHide(), 500);
 };
 

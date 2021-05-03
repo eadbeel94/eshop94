@@ -11,8 +11,23 @@
   height: 100%;
   min-height: 65vh;
   margin: 2rem;
+  color: var(--colorA);
 }
 
 #sec_body5 .card i{
   font-size: 15rem; 
+}
+
+@media (max-width: 1000px) {
+  #sec_body5 .container{
+    padding: 0;
+  }
+  #sec_body5 .card{
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 2rem;
+  }
+  #sec_body5 .card i{
+    font-size: 10rem; 
+  }
 }

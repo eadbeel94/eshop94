@@ -6,7 +6,7 @@
 
 #sec_body16 .card{
   overflow: hidden; 
-  background-color: var(--color2); 
+  background-color: var(--colorE); 
   color: var(--color1); 
   padding: 1rem;
   margin-bottom: 1rem;
@@ -71,7 +71,7 @@
 }
 
 #sec_body16 section:nth-child(3) span:nth-child(2){
-  color: var(--bs-success);
+  color: var(--colorB);
 }
 
 #sec_body16 section:nth-child(3) p:nth-child(4){

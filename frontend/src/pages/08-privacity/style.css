@@ -1,5 +1,21 @@
-#sec_body8{
-  min-height: 75vh;
+
+#sec_body8 > div{
+  background-color: var(--colorE);
+}
+
+#sec_body8 .col-md-4 .card{
+  background-color: var(--colorE);
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+#sec_body8 .col-md-4 img{
+  width: 100px; 
+  margin: 1rem; 
+  margin-left: 5rem; 
+  margin-bottom: 2rem;
 }
 
 #sec_mission .text-center{
@@ -13,4 +29,11 @@
   font-family: poppins1;
   font-size: 18px;
   color: var(--bs-gray);
+}
+
+@media (max-width: 1000px) {
+  #sec_body8 .col-md-4 img{
+    margin: 0; 
+    align-self: center;
+  }
 }

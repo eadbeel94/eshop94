@@ -13,7 +13,7 @@ const genCards2= ( spaceID="" , templateID="" , el={} )=>{
   const $fragment= d.createDocumentFragment();
   const $template= d.getElementById(templateID).content;
 
-  const enable= el.clas.toUpperCase() == "DISPONIBLE" || el.clas.toUpperCase() == "PREVENTA";
+  const enable= el.clas.toUpperCase() == "AVAILABLE";
   $template.querySelector('img').setAttribute('src',el.purl);
   $template.querySelector('.card-title').textContent= el.mname;
   $template.querySelector('.crd-label').textContent= el.clas;
@@ -29,9 +29,9 @@ const genCards2= ( spaceID="" , templateID="" , el={} )=>{
   $template.querySelector('.btn-danger i').dataset.oper= "minus";
   $template.querySelector('.btn-outline-light2').dataset.oper= "wish";
   $template.querySelector('.btn-outline-light2 i').dataset.oper= "wish";
-  $template.querySelector('.btn-outline-info').dataset.oper= enable ? "cart" : "";
-  $template.querySelector('.btn-outline-info').style.display= enable ? "unset" : "none";
-  $template.querySelector('.btn-outline-info i').dataset.oper= enable ? "cart" : "";
+  $template.querySelector('.btn-info').dataset.oper= enable ? "cart" : "";
+  $template.querySelector('.btn-info').style.display= enable ? "unset" : "none";
+  $template.querySelector('.btn-info i').dataset.oper= enable ? "cart" : "";
   
   $fragment.appendChild( d.importNode( $template , true ) )
   $space.appendChild($fragment);
@@ -108,7 +108,7 @@ const watchCards2= ( spaceID="" , uid )=>{
   };
 };
 
-const main= async()=>{
+const showFirst= async ()=>{
   try {
     const res= await fetch(`${IP}/APIshop/central/get-same`);
     const json= await res.json();
@@ -123,19 +123,22 @@ const main= async()=>{
 
   try {
     const $sec_nresults= d.getElementById('sec_nresults');
-
-    const res= await fetch(`${IP}/APIshop/central/get-article${ window.location.search }`);
-    const json= await res.json();
-
-    if( !res.ok ) throw { status: res.status , message: `Fetch code error -> ${ res.statusText }` };
-    if( !json.status ) throw { status: json.status , message: `Server code error -> ${ json.data }` };
-    const { prod }= json.data;
-
-    prod.hasOwnProperty('mname') && genCards2("#sec_body12 div","tmp_card2", prod);
-    $sec_nresults.style.display= prod.hasOwnProperty('mname') ? "none" : "unset";
-    
-  } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 150 , err ) };
+    if( urlp.get('pid') ){
+      const res= await fetch(`${IP}/APIshop/central/get-article${ window.location.search }`);
+      const json= await res.json();
   
+      if( !res.ok ) throw { status: res.status , message: `Fetch code error -> ${ res.statusText }` };
+      if( !json.status ) throw { status: json.status , message: `Server code error -> ${ json.data }` };
+      const { prod }= json.data;
+  
+      prod.hasOwnProperty('mname') && genCards2("#sec_body12 div","tmp_card2", prod);
+      $sec_nresults.style.display= prod.hasOwnProperty('mname') ? "none" : "unset";
+    }else
+      $sec_nresults.style.display= "unset";
+  } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 150 , err ) };
+};
+
+const watchUser= ()=>{
   fauth().onAuthStateChanged( user => {
     if( user ){
       fillNavbar(
@@ -153,7 +156,11 @@ const main= async()=>{
       watchCards2("#sec_body12 div", user.uid);
     }
   });
+};
 
+const main= async()=>{
+  await showFirst();
+  watchUser();
   modalCookie('.modal-cookie');
 };
 

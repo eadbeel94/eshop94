@@ -21,7 +21,7 @@
 
 #sec_products .card .row{
   align-items: center;
-  border: var(--color2) 1px solid;
+  border: var(--colorE) 1px solid;
   color: var(--color1);
 }
 
@@ -70,7 +70,7 @@
 /*------------ title side  ------------*/
 
 #sec_products .card .row section:nth-child(2){
-  background-color: var(--color2);
+  background-color: var(--colorE);
 }
 
 #sec_products .card-body .pr-md-0{
@@ -154,4 +154,19 @@
 
 .emptyBox div{
   text-align: center;
+}
+
+
+
+
+@media (max-width: 720px){
+  #sec_body17 .card{
+    margin: 0.25rem;
+  }
+  #sec_body17 .container{
+    padding: 0;
+  }
+  #sec_body17 .col-lg-8{
+    padding: 0.1rem;
+  }
 }

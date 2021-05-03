@@ -16,18 +16,18 @@
 
   <!--------------------- MAIN SECTION --------------------->
   <section id="sec_body15">
-    <div class="container">
+    <div class="container-md">
       <div class="card">
         <div class="row mx-0 p-1">
 
-          <h3 class="mx-auto mt-2">Tu carrito de compras</h3>
+          <h3 class="mx-auto mt-2">YOUR CART</h3>
           <div class="col-lg-8 col-12">
             <div id="sec_products" class="row mx-0">
 
             
               <div id="sec_nresults" class="col-md-12 col-12 px-0" style="display: none;">
                 <div class="card emptyBox">
-                  <div>CARRITO <p class="mb-0">VACIO</p></div>
+                  <div>EMPTY <p class="mb-0">CART</p></div>
                   <i class="bi bi-basket3 pt-2"></i>
                 </div>
               </div>
@@ -39,7 +39,7 @@
           <div class="col-lg-4 col-12 order-md-2 mb-4 mt-3 px-1">
 
             <h4 class="mb-3">
-              <span class="text-secondary">Resumen de compra</span>
+              <span class="text-secondary"> Summary </span>
               <span id="lbl_qty" class="badge">0</span>
             </h4>
             <ul class="list-group mb-3">
@@ -51,7 +51,7 @@
               </li>
               <li class="list-group-item">
                 <div>
-                  <h6 class="my-0">Envio</h6>
+                  <h6 class="my-0">Ship</h6>
                 </div>
                 <span id="lbl_deliv">$ 0,00</span>
               </li>
@@ -65,21 +65,21 @@
               <!--E mail section-->
               <div class="card text-center pt-3">
                 <p id="lbl_email"></p>
-                <p> iniciado correctamente </p>
+                <p> Sign in successfully </p>
               </div>
               <!--Dropdown section-->
               <div class="card pb-2">
-                <span class="text-center mt-2 mb-1">Seleccionar metodo de envio:</span>
+                <span class="text-center mt-2 mb-1">Select Shipment:</span>
                 <!-- Both buttons section -->
                 <div class="btn-group p-2" role="group">
                   <input type="radio" class="btn-check" type="button" name="btnradio" data-bs-toggle="collapse" id="btn_toogleL">
                   <label class="btn btn-outline-light2" for="btn_toogleL">
-                    Recoger en <p class="mb-0">tienda <i class="bi bi-shop-window ps-1"></i></p>
+                    Catch at <p class="mb-0">Store <i class="bi bi-shop-window ps-1"></i></p>
                   </label>
                 
                   <input type="radio" class="btn-check" type="button" name="btnradio" data-bs-toggle="collapse" id="btn_toogleR">
                   <label class="btn btn-outline-light2" for="btn_toogleR">
-                    Envio por <p class="mb-0">paqueteria <i class="bi bi-truck ps-1"></i></p>
+                    Shipment <p class="mb-0"> <i class="bi bi-truck ps-1"></i></p>
                   </label>
                 </div>
                 <!-- Left dropdown section (only one button) -->
@@ -88,15 +88,15 @@
                     <div class="form-check">
                       <input class="form-check-input mt-2" type="checkbox" id="chk_left1" required>
                       <label class="form-check-label" for="chk_left1">
-                        Acepto todos los terminos y condiciones explicados en
+                        Acept all terms and condition explian in
                         <a href="/projects/eshop94/pages/privacity/" target="”_blank">
-                          Terminos y condiciones <i class="bi bi-arrow-up-right-square"></i>
+                          Terms & Conditions <i class="bi bi-arrow-up-right-square"></i>
                         </a>
                       </label>
                     </div>
                   </div>
                   <button id="btn_payl" type="button" class="btn btn-lg btn-success" disabled>
-                    Pagar con tarjeta mediante
+                    Pay using card throw
                     <p class="m-0"> Mercado pago <i class="bi bi-cash ps-2"></i></p>
                   </button>
                 </section>
@@ -105,10 +105,10 @@
                   <form id="frm_payR">
 
                     <p class="text-center">
-                      Complete los datos para el envio <i class="far fa-address-book pl-1"></i>
+                      Complete form for Shipment  <i class="far fa-address-book pl-1"></i>
                     </p>
 
-                    <label for="inp_nameform">Nombre</label>
+                    <label for="inp_nameform">Full name</label>
                     <div class="input-group mb-2">
                       <div class="input-group-prepend">
                         <div class="input-group-text">
@@ -121,7 +121,7 @@
                       </div>
                     </div>
 
-                    <label for="inp_emailform">Correo electronico</label>
+                    <label for="inp_emailform">E-mail</label>
                     <div class="input-group mb-2">
                       <div class="input-group-prepend">
                         <div class="input-group-text">
@@ -134,7 +134,7 @@
                       </div>
                     </div>
 
-                    <label>Telefono</label>
+                    <label>Phone</label>
                     <div class="input-group mb-2">
                       <input class="form-control" type="tel" placeholder="844-123-4567">
                       <div class="input-group-append">
@@ -142,27 +142,27 @@
                       </div>
                     </div>
 
-                    <label>Estado</label>
+                    <label>State</label>
                     <div class="input-group mb-2">
                       <select id="inp_stateform" class="form-control" required>
-                        <option selected value="">elegir...</option>
+                        <option selected value="">choose...</option>
                       </select>
                       <div class="input-group-append">
                         <span class="input-group-text"><i class="bi bi-wifi"></i></span>
                       </div>
                     </div>
 
-                    <label>Municipio/delegacion</label>
+                    <label>City</label>
                     <div class="input-group mb-2">
                       <select id="inp_substateform" class="form-control text-lowercase">
-                        <option selected value="">elegir...</option>
+                        <option selected value="">choose...</option>
                       </select>
                       <div class="input-group-append">
                         <span class="input-group-text"><i class="bi bi-layers"></i></span>
                       </div>
                     </div>
 
-                    <label>Calle</label>
+                    <label>Street</label>
                     <div class="input-group mb-2">
                       <input class="form-control" type="text" placeholder="chiles en nogada ampliacion" required>
                       <div class="input-group-append">
@@ -172,16 +172,16 @@
 
                     <div class="form-row mb-2">
                       <div class="col">
-                        <label>No de casa</label>
+                        <label>address number</label>
                         <input type="number" class="form-control" placeholder="# 3412" required>
                       </div>
                       <div class="col">
-                        <label>Codigo postal</label>
+                        <label>Zip code</label>
                         <input type="number" class="form-control" placeholder="65000" required>
                       </div>
                     </div>
 
-                    <label>Colonia</label>
+                    <label>Zone</label>
                     <div class="input-group mb-2">
                       <input class="form-control" type="text" placeholder="Independencia" required="">
                       <div class="input-group-append">
@@ -189,7 +189,7 @@
                       </div>
                     </div>
 
-                    <label>Descripcion adicional</label>
+                    <label>Aditional description</label>
                     <div class="input-group mb-2">
                       <textarea class="form-control" rows="2" placeholder="casa de color amazul"></textarea>
                       <div class="input-group-append">
@@ -201,16 +201,16 @@
                       <div class="form-check">
                         <input class="form-check-input mt-2" type="checkbox" id="chk_right1" required>
                         <label class="form-check-label" for="chk_right1">
-                          Acepto todos los terminos y condiciones explicados en
+                          Acept all terms and condition explian in
                           <a href="/projects/eshop94/pages/privacity/" target="”_blank">
-                            Terminos y condiciones <i class="bi bi-arrow-up-right-square"></i>
+                            Terms & Conditions <i class="bi bi-arrow-up-right-square"></i>
                           </a>
                         </label>
                       </div>
                     </div>
 
                     <button type="submit" class="btn btn-success mb-2 mt-3">
-                      Pagar con tarjeta mediante
+                      Pay using card throw
                       <p class="m-0"> Mercado pago <i class="bi bi-cash ps-2"></i></p>
                     </button>
                   </form>
@@ -267,8 +267,8 @@
               <p class="card-text m-0">
               </p>
               <div class="row mx-0 mt-1">
-                <div class="col-lg-5 col-md-5 col-6 ps-0 crd-bottom"></div>
-                <div class="col-lg-5 offset-lg-2 col-md-7 pe-0 col-6">
+                <div class="col-lg-5 col-md-5 col-5 ps-0 crd-bottom"></div>
+                <div class="col-lg-5 offset-lg-2 col-md-7 pe-0 col-7">
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <button class="btn btn-success" type="button">

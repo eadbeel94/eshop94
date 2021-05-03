@@ -25,7 +25,7 @@
 
 #sec_products .card .row{
   align-items: center;
-  border: var(--color2) 1px solid;
+  border: var(--colorE) 1px solid;
   color: var(--color1);
 }
 
@@ -73,7 +73,7 @@
 /*------------ title side  ------------*/
 
 #sec_products .card .row section:nth-child(2){
-  background-color: var(--color2);
+  background-color: var(--colorE);
 }
 
 #sec_products .card-body .pr-md-0{
@@ -92,7 +92,7 @@
 
 #sec_products .crd-link{
   overflow: hidden;
-  color: var(--color3);
+  color: var(--colorB);
   font-family: hcomic1;
   font-size: 24px;
   text-decoration: unset;
@@ -148,12 +148,12 @@
 }
 
 #sec_body15 h4 .badge{
-  background: var(--color2);
+  background: var(--colorE);
   border-radius: 1rem;
 }
 
 #sec_body15 .list-group{
-  background: var(--color2);
+  background: var(--colorE);
   padding: 0.5rem;
 }
 
@@ -167,7 +167,7 @@
 /*------------ seasson side  ------------*/
 
 #sec_login div:nth-child(1){
-  background: var(--color2);
+  background: var(--colorE);
   color: var(--color1);
   font-family: poppins1;
 }
@@ -177,7 +177,7 @@
 }
 
 #sec_login div:nth-child(2){
-  background: var(--color2);
+  background: var(--colorE);
   color: var(--color1);
   font-family: poppins1;
 }
@@ -230,7 +230,7 @@
   color: var(--color1);
 }
 #sec_login form span.input-group-text{
-  background: var(--color2); width: 45px;
+  background: var(--colorE); width: 45px;
 }
 
 #sec_login form .form-check a{
@@ -256,11 +256,11 @@
 }
 
 #sec_login div:nth-child(5) span:nth-child(3){
-  color: var(--color3);
+  color: var(--bs-info);
 }
 
 #sec_login div:nth-child(5) a{
-  color: var(--color3);
+  color: var(--bs-info);
   text-decoration: unset;
 }
 
@@ -291,3 +291,12 @@
   }
 }
 
+@media (max-width: 720px){
+  #sec_body15 .container-md{
+    padding: 0;
+  }
+  #sec_body15 .col-lg-8{
+    padding: 0.1rem;
+  }
+
+}

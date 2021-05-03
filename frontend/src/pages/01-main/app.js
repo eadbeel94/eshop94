@@ -1,20 +1,35 @@
 /** @namespace Frontend/01-login */
 //import { Modal } from 'bootstrap/dist/js/bootstrap.bundle';
 import './style.css';
-const { modalShow, getError, fillNavbar, genDropTypes, genSearchBox, genCards, watchCards, modalCookie, prod, IP } = require('../../js/helper.js');
+const { 
+  modalShow, 
+  getError, 
+  fillNavbar, 
+  genDropTypes, 
+  genSearchBox,
+  genCards, 
+  watchCards, 
+  modalCookie, 
+  prod, 
+  IP 
+} = require('../../js/helper.js');
 
 process.env.NODE_ENV === 'development' && firebase.initializeApp(require('../../js/firebase.init.json'));
 const fauth= firebase.auth;
 const d= document;
 
-const main= async()=>{
-  //const { modalHide }= spinnerShow( Modal , "modals" , "tmp_spinner" );
+const btnLinks= ()=>{
   const $btns= d.querySelectorAll('#sec_clasify .btn');
-  $btns[0].onclick= () => window.open(`${ prod ? "/projects/eshop94" : "" }/pages/articles/?fr=c&cr=preventa`,'_self');
-  $btns[1].onclick= () => window.open(`${ prod ? "/projects/eshop94" : "" }/pages/articles/?fr=t&cr=funkpop`,'_self');
+  //$btns[0].onclick= () => window.open(`${ prod ? "/projects/eshop94" : "" }/pages/articles/?fr=c&cr=preventa`,'_self');
+  //$btns[1].onclick= () => window.open(`${ prod ? "/projects/eshop94" : "" }/pages/articles/?fr=t&cr=funkpop`,'_self');
+  //$btns[2].onclick= () => window.open('#','_self');
+  $btns[0].onclick= () => window.open('#','_self');
+  $btns[1].onclick= () => window.open('#','_self');
   $btns[2].onclick= () => window.open('#','_self');
   $btns[3].onclick= () => window.open(`${ prod ? "/projects/eshop94" : "" }/pages/articles/?fr=p&cr=1`,'_self');
+};
 
+const showFirst= async()=>{
   try {
     const res= await fetch(`${IP}/APIshop/central/get-same`);
     const json= await res.json();
@@ -36,7 +51,9 @@ const main= async()=>{
 
     genCards( "#sec_body1 div.row" , "tmp_card" , news );
   } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 40 , err ) };
+};
 
+const watchUser= ()=>{
   fauth().onAuthStateChanged( user => {
     fillNavbar(
       user,
@@ -57,7 +74,13 @@ const main= async()=>{
       'lbl_cart' 
     );
   });
+};
 
+const main= async()=>{
+  //const { modalHide }= spinnerShow( Modal , "modals" , "tmp_spinner" );
+  btnLinks();
+  showFirst();
+  watchUser();
   modalCookie('.modal-cookie');
   //setTimeout(() => modalHide(), 500);
 };

@@ -34,9 +34,7 @@ const fillTable= ( spaceID="", template1ID="", template2ID="", template3ID="", l
   $space.appendChild($fragment);
 };
 
-const main= async()=>{
-  //const { modalHide }= spinnerShow( Modal , "modals" , "tmp_spinner" );
-
+const showFirst= async ()=>{
   try {
     const $lbl_title= document.getElementById('lbl_title');
 
@@ -51,7 +49,9 @@ const main= async()=>{
     genDropTypes( "drp_types" , types );
     genSearchBox( "#sec_navbar .btn-group-vertical" , "inp_search" , names );
   } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 60 , err ) };
+};
 
+const watchUser= ()=>{
   fauth().onAuthStateChanged( user => {
     fillNavbar(
       user,
@@ -65,9 +65,10 @@ const main= async()=>{
       'lbl_wish',
       'lbl_cart'
     );
-
   });
+};
 
+const genTable= async ()=>{
   try {
     const res= await fetch(`${IP}/APIshop/check/resume?type=${ urlp.get('type') }&id=${ urlp.get('id') }`);
     const json= await res.json();
@@ -82,9 +83,14 @@ const main= async()=>{
     fillTable( "#spc_table","tmp_row1" , "tmp_row2" , "tmp_row3" , products , ship , total );
 
   } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 90 , err ) };
+}
 
+const main= async()=>{
+  //const { modalHide }= spinnerShow( Modal , "modals" , "tmp_spinner" );
+  await showFirst();
+  watchUser();
+  genTable();
   modalCookie('.modal-cookie');
-  
   //setTimeout(() => modalHide(), 500);
 };
 

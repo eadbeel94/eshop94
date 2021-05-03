@@ -15,6 +15,10 @@
   --color4: #fd7e14;
   --color5: #0d6efd;
   --color6: #303030;
+
+  --colorA: #6C7577;
+  --colorB: #D9E3E6;
+  --colorE: #434C4E;
 }
 
 body{
@@ -57,9 +61,3 @@ body{
   color: var(--color1);
   background-color: transparent;
 }
-
-
-
-.dropdown-item:active{
-  background-color: var(--color2);
-};

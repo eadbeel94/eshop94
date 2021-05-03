@@ -1,12 +1,19 @@
 /** @namespace Frontend/01-login */
 
 import './style.css';
-const { modalShow, getError, fillNavbar, genDropTypes, genSearchBox, IP } = require('../../js/helper.js');
+const { 
+  modalShow, 
+  getError, 
+  fillNavbar,
+  genDropTypes, 
+  genSearchBox, 
+  IP 
+} = require('../../js/helper.js');
 
 process.env.NODE_ENV === 'development' && firebase.initializeApp(require('../../js/firebase.init.json'));
 const fauth= firebase.auth;
 
-const main= async()=>{
+const showFirst= async()=>{
   try {
     const res= await fetch(`${IP}/APIshop/central/get-same`);
     const json= await res.json();
@@ -18,7 +25,9 @@ const main= async()=>{
     genDropTypes( "drp_types" , types );
     genSearchBox( "#sec_navbar .btn-group-vertical" , "inp_search" , names );
   } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 30 , err ) };
+};
 
+const watchUser= ()=>{
   fauth().onAuthStateChanged( user => {
     fillNavbar(
       user,
@@ -33,6 +42,11 @@ const main= async()=>{
       'lbl_cart'
     );
   });
+}
+
+const main= async()=>{
+  showFirst();
+  watchUser();
   //modalCookie('.modal-cookie');
 };
 

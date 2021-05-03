@@ -10,7 +10,7 @@ const sales= firestore().collection('sales');
 let access_token= "";
 let IP= ["",""]
 if (process.env.NODE_ENV !== 'production') {
-  const { "test-access_token": atoken }= require('./keys/mercadoKey.json');
+  const { "test-access_token": atoken }= require('../keys/mercadoKey.json');
   access_token= atoken;
   IP= [`http://localhost:5000`,`http://localhost:5001`,`http://localhost:8080`,];
 }else{
@@ -41,7 +41,7 @@ router.post('/create-session', async (req, res) => {                     //If us
           const preference= { 
             items: [],
             auto_return: "approved",
-            statement_descriptor: "La liga: Coleccionables",
+            statement_descriptor: "Eshop94",
             back_urls: {
               "success": `${ IP[0] }/APIshop/check/endok-session?uid=${ uid }&ship=${ ship }`,
               "failure": `${ IP[0] }/projects/eshop94/pages/cart/index.html`,

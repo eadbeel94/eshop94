@@ -31,7 +31,7 @@ const genCards2= ( spaceID="" , templateID="" , list=[] )=>{
   const $fragment= d.createDocumentFragment();
   const $template= d.getElementById(templateID).content;
   list.forEach( el =>{
-    const enable= el.clas.toUpperCase() == "DISPONIBLE" || el.clas.toUpperCase() == "PREVENTA";
+    const enable= el.clas.toUpperCase() == "AVAILABLE";
     if( enable ){
       $template.querySelector('div').dataset.id= el.id;
       $template.querySelector('img').setAttribute('src',el.purl);
@@ -140,31 +140,31 @@ const processPay= async ( info={} ) =>{
 const modalBody4= ()=>{
   return `
     <h5 class="text-justify mb-3">
-      Para poder probar de manera correcta la pasarela de pago de <strong>Mercado Pago</strong>, porfavor solo utilice estas credenciales de acceso:
+      You can test <strong>Mercado Pago</strong> method in correct way using the next information: 
     </h5>
 
     <table class="table table-dark table-hover">
       <thead>
         <tr>
-          <th scope="col">Criterio</th>
-          <th scope="col">Descripcion</th>
+          <th scope="col">Criterion</th>
+          <th scope="col">Description</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th scope="row">Tarjeta</th>
+          <th scope="row">Card</th>
           <td>VISA</td>
         </tr>
         <tr>
-          <th scope="row">Numero</th>
+          <th scope="row">Number</th>
           <td>4075 5957 1648 3764</td>
         </tr>
         <tr>
-          <th scope="row">Codigo de seguridad</th>
+          <th scope="row">Security code</th>
           <td>123</td>
         </tr>
         <tr>
-          <th scope="row">Fecha de vencimiento</th>
+          <th scope="row">Due date</th>
           <td>11/25</td>
         </tr>
         <tr>
@@ -172,7 +172,7 @@ const modalBody4= ()=>{
           <td></td>
         </tr>
         <tr>
-          <th scope="row">E-mail del<p class="mb-0">usuario</p></th>
+          <th scope="row">E-mail<p class="mb-0">user</p></th>
           <td>test_user_69518536 <p class="mb-0">@testuser.com</p></td>
         </tr>
         <tr>
@@ -182,8 +182,8 @@ const modalBody4= ()=>{
       </tbody>
     </table>
 
-    <h4 class="text-justify text-warning">Nota: No utilice datos reales para esta prueba</h4>
-    <h5>Para mas informacion puedes visitar el siguiente link: <a class="text-info" href="https://www.mercadopago.com.mx/developers/es/guides/online-payments/checkout-pro/test-integration#bookmark_tarjetas_de_prueba" target="_blank">mercadopago.com.mx© </a></span></h5>
+    <h4 class="text-justify text-warning">Note: You dont use real information in this test</h4>
+    <h5>More information You can be query entering the next link <a class="text-info" href="https://www.mercadopago.com.mx/developers/es/guides/online-payments/checkout-pro/test-integration#bookmark_tarjetas_de_prueba" target="_blank">mercadopago.com.mx© </a></span></h5>
   `.replace('\n','');
 }
 
@@ -293,7 +293,7 @@ const watchDrp= ( uid, name, email )=>{
   };
 };
 
-const main= async()=>{
+const showFirst= async ()=>{
   try {
     const res= await fetch(`${IP}/APIshop/central/get-same`);
     const json= await res.json();
@@ -305,7 +305,9 @@ const main= async()=>{
     genDropTypes( "drp_types" , types );
     genSearchBox( "#sec_navbar .btn-group-vertical" , "inp_search" , names );
   } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 240 , err ) };
+};
 
+const watchUser= ()=>{
   fauth().onAuthStateChanged( async user => {
     if( !user ){
       window.open(`${ prod ? "/projects/eshop94" : "" }/404.html`,'_self');
@@ -347,7 +349,11 @@ const main= async()=>{
       } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 290 , err ) };
     };
   });
+};
 
+const main= async()=>{
+  await showFirst();
+  watchUser();
   modalCookie('.modal-cookie');
 };
 

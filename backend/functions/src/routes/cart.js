@@ -5,7 +5,7 @@ const { firestore }= require('firebase-admin');
 const products= firestore().collection('prods');
 const clients= firestore().collection('clis');
 
-const { userSearch , genConters }= require('./helper.js');
+const { userSearch , genConters }= require('../helper.js');
 
 router.get('/get-cli-counters', async (req,res)=>{    //getCart
   let status= false;

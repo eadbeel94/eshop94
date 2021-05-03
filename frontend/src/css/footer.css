@@ -1,5 +1,5 @@
 #sec_footer{
-  background-color: var(--color2);
+  background-color: var(--colorA);
 }
 
 #sec_footer footer{
@@ -11,15 +11,28 @@
 }
 
 #sec_footer div.col-lg a{
-  color: var(--color1)
+  color: var(--color1);
+  text-decoration: none;
 }
 
 #sec_footer div.row.text-center {
   font-family: hcomic1;
   font-size: 1.3rem;
+  justify-content: center;
 }
 
-#sec_footer .col-lg-7{
+#sec_footer .col-12{
   color: var(--color1);
   font-family: poppins1;
+
+}
+
+#sec_footer .col-12 a{
+  color: var(--color2) !important;
+}
+
+#sec_footer .col-6{
+  height: 50px;
+  line-height: 50px;
+  overflow: hidden;
 }

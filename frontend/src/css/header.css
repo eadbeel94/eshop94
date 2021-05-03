@@ -1,9 +1,14 @@
 /*----------------------- Left side  ------------------------*/
 #sec_navbar{
-  background: var(--color2); 
+  background: var(--colorA); 
   margin: 0 !important;
   font-family: poppins1;
 }
+
+.navbar2{
+  display: flex; flex-grow: 1; align-items: center;
+}
+
 #sec_navbar a.nav-link{
   color: var(--color1);
 }
@@ -30,11 +35,21 @@
   width: 215px;
 }
 
+
+
+#sec_navbar section.navbar-nav:nth-child(3) div.dropdown-menu .btn{
+  border-radius: 0;
+  width: 100%;
+  font-weight: bold;
+}
+
+/*
 #sec_navbar div.dropdown-menu .btn{
   border-radius: 0;
   width: 100%;
   font-weight: bold;
 }
+*/
 
 .search_box{
   position: absolute;
@@ -77,3 +92,29 @@
     top: 70px; width: 498px;
   }
 }
+
+@media (max-width: 1000px) {
+  #sec_navbar a{
+    width: 100%;
+    text-align: center;
+  }
+  #sec_navbar section:nth-child(1), #sec_navbar section:nth-child(2){
+    display: none !important;
+  }
+  #sec_navbar section:nth-child(3){
+    width: 100%;
+    align-items: center;
+  }
+  #btn_search{
+    display: none;
+  }
+}
+
+
+/* The second element affect directly first method */
+.algo{
+  color: var(--color1);
+}
+.dropdown-item:active{
+  background-color: var(--colorE);
+};

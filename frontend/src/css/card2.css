@@ -1,7 +1,7 @@
 .card2{
   height: 465px; 
   border: 0;
-  background-color: var(--color2) !important;
+  background-color: var(--colorE) !important;
 }
 
 .card2 div:nth-child(1){
@@ -44,7 +44,7 @@
   font-family: hcomic1; 
   /*font-size: 14px;*/
   text-decoration: unset;
-  color: var(--color3);
+  color: var(--colorB);
   text-transform: uppercase;
 }
 .card2 a i{
@@ -92,39 +92,3 @@
   right: -66px;
   font-size: 17px;
 }
-
-
-/*
-@media (max-width: 576px) {
-  .card2 div.overflow-hidden.text-center{
-    display: flex; height: 200px; align-self: center; 
-  }
-  .card2 img{
-    align-self: center; height: auto; max-width: 110px; 
-  }
-  .card2 section.card{
-    height: 330px;
-  }
-  .card2 .card-title{
-    font-size: 22px; height: 30px;
-  }
-  .card2 p.card-text.text-justify{
-    height: 35px; line-height: 1;
-  }
-  .card2 a {
-    font-size: 12px;
-  }
-  .card2 i.fa-external-link-alt {
-    font-size: 12px;
-  }
-  .card2 p.card-text.text-left{
-    font-size: 14px; height: 25px
-  }
-  .card2 .btn{
-    font-family: poppins1; font-size: 11px; max-height: 28px;
-  }
-  .card2 div.position-absolute.h-50 div{
-    font-size: 14px; top: 20px;  right: -65px;
-  }
-}
-*/

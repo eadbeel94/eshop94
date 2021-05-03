@@ -13,11 +13,12 @@ import '../css/footer.css';
 import '../css/main.scss';
 
 import '../img/favicon.ico';
-import '../img/title.png';
 
-import '../img/car2.png';
-import '../img/car3.png';
-import '../img/car4.png';
 import '../img/logo.png';
 import '../img/logo2.png';
-import '../img/logo3.png';
+import '../img/banner1.jpg';
+import '../img/banner2.jpg';
+import '../img/banner3.jpg';
+import '../img/banner11.jpg';
+import '../img/banner12.jpg';
+import '../img/banner13.jpg';

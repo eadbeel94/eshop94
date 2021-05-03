@@ -1,7 +1,17 @@
 /** @namespace Frontend/01-login */
 
 import './style.css';
-const { modalShow, getError, fillNavbar, genDropTypes, genSearchBox, genCards, watchCards, modalCookie, IP } = require('../../js/helper.js');
+const { 
+  modalShow, 
+  getError, 
+  fillNavbar, 
+  genDropTypes, 
+  genSearchBox, 
+  genCards,
+  watchCards, 
+  modalCookie, 
+  IP 
+} = require('../../js/helper.js');
 
 process.env.NODE_ENV === 'development' && firebase.initializeApp(require('../../js/firebase.init.json'));
 const fauth= firebase.auth;
@@ -22,7 +32,7 @@ const genBtnsPag= ( spaceID="", max=0 , curr=0 )=>{
   
     const $button= d.createElement('a');
     $button.classList.add('btn');
-    $button.classList.add('btn-outline-dark');
+    $button.classList.add('btn-outline-secondary');
   
     $button.textContent= "Atras";
     $button.setAttribute('href',`/projects/eshop94/pages/articles/?fr=p&cr=${ currPage-1 }`)
@@ -35,14 +45,14 @@ const genBtnsPag= ( spaceID="", max=0 , curr=0 )=>{
       const $button2= d.createElement('a');
       $button2.classList.add('btn');
       $button2.setAttribute('href',`/projects/eshop94/pages/articles/?fr=p&cr=${ i }`)
-      $button2.classList.add( (i) == currPage ? "btn-dark" : "btn-outline-dark" );
+      $button2.classList.add( (i) == currPage ? "btn-secondary" : "btn-outline-secondary" );
       $button2.textContent= i;
       $groups[1].appendChild( d.importNode( $button2 , true ) );
     }
   }
 };
 
-const main= async()=>{
+const showFirst= async ()=>{
   try {
     const $lbl_title= document.getElementById('lbl_title');
 
@@ -54,12 +64,14 @@ const main= async()=>{
     const { names, types }= json.data;
 
     const unique= types.filter( el=> el['type'] == urlp.get('cr') );
-    if( urlp.get('fr') == "t" && unique.length > 0 ) $lbl_title.textContent= `Categoria ${ unique[0]['name'] }`;
+    if( urlp.get('fr') == "t" && unique.length > 0 ) $lbl_title.textContent= `${ unique[0]['name'] } category`;
     genDropTypes( "drp_types" , types );
     genSearchBox( "#sec_navbar .btn-group-vertical" , "inp_search" , names );
     genBtnsPag( "sec_pages" , names.length , urlp.get('cr') );
   } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 70 , err ) };
+};
 
+const showResult= async ()=>{
   try {
     const $sec_nresults= document.getElementById('sec_nresults');
 
@@ -77,7 +89,9 @@ const main= async()=>{
       genCards( "#sec_body11 div.row" , "tmp_card" , prods );
     }
   } catch (err) { modalShow( "modals" , "tmp_modal" , getError(err) ); console.log( 90 , err ) };
+};
 
+const watchUser= ()=>{
   fauth().onAuthStateChanged( user => {
     fillNavbar(
       user,
@@ -98,7 +112,12 @@ const main= async()=>{
       'lbl_cart' 
     );
   });
+};
 
+const main= async()=>{
+  await showFirst();
+  await showResult();
+  watchUser();
   modalCookie('.modal-cookie');
 };
 

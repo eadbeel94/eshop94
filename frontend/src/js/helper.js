@@ -3,7 +3,7 @@
 const d= document;
 const prod= process.env.NODE_ENV !== 'development';
 const IP= !prod ? "http://localhost:5000" : "";  //const IP= "http://localhost:5001/driveshop5/us-central1/shop";
-const { Modal }= require('bootstrap/dist/js/bootstrap.bundle');
+const { Modal, Tooltip }= require('bootstrap/dist/js/bootstrap.bundle');
 
 const modalShow= ( spaceID="" , templateID="" , body="" , btns=1 , cb ) =>{            //Create a Html Modal empty
     
@@ -78,6 +78,8 @@ const fillNavbar= async (
   $lbl_wish.textContent= 0;
   $lbl_cart.textContent= 0;
 
+  ([].slice.call(d.querySelectorAll('[data-bs-toggle="tooltip"]'))).map( el => new Tooltip(el) );
+
   if( userInfo ){
     $lbl_account.textContent= (userInfo.displayName.split(" "))[0];
     $btn_login.disabled= true;
@@ -144,7 +146,7 @@ const genCards= ( spaceID="" , templateID="" , list=[] )=>{
   const $fragment= d.createDocumentFragment();
   const $template= d.getElementById(templateID).content;
   list.forEach( el=>{
-    const enable= el.clas.toUpperCase() == "DISPONIBLE" || el.clas.toUpperCase() == "PREVENTA";
+    const enable= el.clas.toUpperCase() == "AVAILABLE";
 
     $template.querySelector('img').setAttribute('src',el.purl)
     $template.querySelector('.card-title').textContent = `$${el.cost},00`;
