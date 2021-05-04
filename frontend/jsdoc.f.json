@@ -1,0 +1,18 @@
+{
+  "plugins": ["jsdoc-http-plugin"],
+  "source": {
+    "include": ["../frontend/src"],
+    "includePattern": ".js$",
+    "excludePattern": "(www|node_modules)"
+  },
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false
+  },
+  "opts": {
+    "recurse": "true",
+    "destination": "./doc/frontend",
+    "template": "node_modules/docdash",
+    "readme": "./README.f.md"
+  }
+}

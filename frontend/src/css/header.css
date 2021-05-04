@@ -118,3 +118,6 @@
 .dropdown-item:active{
   background-color: var(--colorE);
 };
+.algo{
+  color: var(--color1);
+}

@@ -1,7 +1,3 @@
-//import '../css/b4/bootstrap.css';
-//import '../css/fa/css/all.min.css';
-//import 'animate.css';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 

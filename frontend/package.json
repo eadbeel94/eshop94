@@ -9,7 +9,9 @@
     "build3": "cross-env NODE_ENV=development webpack -d",
     "buildP": "cross-env NODE_ENV=production webpack -p",
     "buildD": "cross-env NODE_ENV=development webpack -d",
-    "docs": "jsdoc -c jsdoc.json"
+    "docsB": "jsdoc -c jsdoc.b.json",
+    "docsF": "jsdoc -c jsdoc.f.json",
+    "docs" : "run-s docsB docsF"
   },
   "keywords": [],
   "author": "",

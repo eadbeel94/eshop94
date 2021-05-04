@@ -12,7 +12,6 @@ Web page example link: [inventory94](https://inventory94.herokuapp.com/)
 <!--
 # Project documentation structure
 - Frontend (views)
-  - [login](/doc/Frontend_01-login.html)
   - [welcome](/doc/Frontend_02-welcome.html)
   - [about](/doc/Frontend_03-about.html)
   - [error](/doc/Frontend_06-error.html)

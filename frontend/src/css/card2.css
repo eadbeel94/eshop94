@@ -12,6 +12,7 @@
   background-color: var(--color1);
   width: 100%;
 }
+
 .card2 img{
   align-self: center; 
   height: 230px; 
@@ -42,11 +43,11 @@
 
 .card2 a {
   font-family: hcomic1; 
-  /*font-size: 14px;*/
   text-decoration: unset;
   color: var(--colorB);
   text-transform: uppercase;
 }
+
 .card2 a i{
   font-size: 18px;
 }

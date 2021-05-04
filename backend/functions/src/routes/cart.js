@@ -1,3 +1,5 @@
+/** @namespace route/cart */
+
 const { Router } = require("express");
 const router= Router();
 
@@ -5,8 +7,23 @@ const { firestore }= require('firebase-admin');
 const products= firestore().collection('prods');
 const clients= firestore().collection('clis');
 
-const { userSearch , genConters }= require('../helper.js');
+const { 
+  userSearch, 
+  genConters 
+}= require('../helper.js');
 
+/* ------------------------------------------------------------------------------------------------------------------------ */
+
+/**
+ * Get wish list and cart list counters
+ *
+ * @name get-cli-counter
+ * @path {GET} /APIshop/cart/get-cli-counters
+ * @query {String} [id] get user id for search in database
+ * @response {Boolean} status if query database complety successfully
+ * @response {Object} data both counters getting from database query result
+ * @memberof route/cart
+ */
 router.get('/get-cli-counters', async (req,res)=>{    //getCart
   let status= false;
   let data;
@@ -27,7 +44,20 @@ router.get('/get-cli-counters', async (req,res)=>{    //getCart
   res.json({ status , data });
 });
 
-router.get('/get-cli-cart', async (req,res)=>{        //getClient
+/* ------------------------------------------------------------------------------------------------------------------------ */
+
+/**
+ * Get list of products from wish or cart list
+ *
+ * @name get-cli-cart
+ * @path {GET} /APIshop/cart/get-cli-cart
+ * @query {String} [id] get user id for search in database
+ * @query {String} [type] select list from get products
+ * @response {Boolean} status if query database complety successfully
+ * @response {Object} data all products getting from database query result
+ * @memberof route/cart
+ */
+router.get('/get-cli-cart', async (req,res)=>{
   let status= false;
   let data= { };
   try {
@@ -69,7 +99,19 @@ router.get('/get-cli-cart', async (req,res)=>{        //getClient
   res.json({ status , data });
 });
 
-router.post('/add-once-cli-cart', async (req,res)=>{  //addCart
+/* ------------------------------------------------------------------------------------------------------------------------ */
+
+/**
+ * Add just a product in database based on client selection
+ *
+ * @name add-once-cli-cart
+ * @path {POST} /APIshop/cart/add-once-cli-cart
+ * @body {Object} Include user id, product id and list select
+ * @response {Boolean} status if query database complety successfully
+ * @response {Object} data return feedback coount
+ * @memberof route/cart
+ */
+router.post('/add-once-cli-cart', async (req,res)=>{
   let status= false;
   let data;
   try {
@@ -102,7 +144,19 @@ router.post('/add-once-cli-cart', async (req,res)=>{  //addCart
   res.json({ status , data });
 });
 
-router.put('/add-more-cli-cart', async (req,res)=>{   //add2Cart
+/* ------------------------------------------------------------------------------------------------------------------------ */
+
+/**
+ * Add 1 or more product in database based on client selection
+ *
+ * @name add-more-cli-cart
+ * @path {PUT} /APIshop/cart/add-more-cli-cart
+ * @body {Object} Include user id, product id and quantity elements to add
+ * @response {Boolean} status if query database complety successfully
+ * @response {Object} data return feedback coount
+ * @memberof route/cart
+ */
+router.put('/add-more-cli-cart', async (req,res)=>{
   let status= false;
   let data= { cart: 0 };
   try {
@@ -126,6 +180,18 @@ router.put('/add-more-cli-cart', async (req,res)=>{   //add2Cart
   res.json({ status , data });
 });
 
+/* ------------------------------------------------------------------------------------------------------------------------ */
+
+/**
+ * Change value count in client product list database
+ *
+ * @name mod-cli-cart
+ * @path {PUT} /APIshop/cart/mod-cli-cart
+ * @body {Object} Include user id, product id, type operation and quantity elements to change
+ * @response {Boolean} status if query database complety successfully
+ * @response {Object} data return final product couent, final summary counts products and final total summary counter
+ * @memberof route/cart
+ */
 router.put('/mod-cli-cart', async (req,res)=>{        //modCart
   let status= false;
   let data= { prod: 0, qty: 0 , total: 0 };
@@ -151,7 +217,6 @@ router.put('/mod-cli-cart', async (req,res)=>{        //modCart
             data.prod= newEL[1];
             if( newEL[1] == 0 )         newEL= undefined;
           }
-          //data.qty+= newEL ? newEL['1'] : 0;
           return newEL
         }).filter( el =>{ if(el){ data.qty+= Number(el[1]); ids.push( el[0] ); return el; } });
 
@@ -168,6 +233,18 @@ router.put('/mod-cli-cart', async (req,res)=>{        //modCart
   res.json({ status , data });
 });
 
+/* ------------------------------------------------------------------------------------------------------------------------ */
+
+/**
+ * Move a product element from wish list to cart list
+ *
+ * @name move-cli-cart
+ * @path {PUT} /APIshop/cart/move-cli-cart
+ * @body {Object} Include user id and product id
+ * @response {Boolean} status if query database complety successfully
+ * @response {Object} data final count product in cart list
+ * @memberof route/cart
+ */
 router.put('/move-cli-cart', async (req,res)=>{       //moveCart
   let status= false;
   let data= { };
@@ -197,5 +274,7 @@ router.put('/move-cli-cart', async (req,res)=>{       //moveCart
   } catch (err) { data= err.message; status= false; console.log(200, err); };
   res.json({ status , data });
 });
+
+/* ------------------------------------------------------------------------------------------------------------------------ */
 
 module.exports = router;

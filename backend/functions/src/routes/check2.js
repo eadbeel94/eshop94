@@ -1,3 +1,5 @@
+/** @namespace route/check */
+
 const { config }= require('firebase-functions');
 const { Router } = require("express");
 const router= Router();
@@ -21,8 +23,23 @@ if (process.env.NODE_ENV !== 'production') {
 const mp= require('mercadopago');
 mp.configure({ access_token });
 
-const { userSearch , getMXN }= require('../helper.js');
+const { 
+  userSearch , 
+  getMXN 
+}= require('../helper.js');
 
+/* ------------------------------------------------------------------------------------------------------------------------ */
+
+/**
+ * Create a checkout session base on all product in client cart list and ship information
+ *
+ * @name create-session
+ * @path {POST} /APIshop/central/create-session
+ * @body {Object} Include user id, if ship or not ship select, username, email, phone and address client information
+ * @response {Boolean} status if query database complety successfully
+ * @response {Object} data gerate url to redirect mercado pago page
+ * @memberof route/check
+ */
 router.post('/create-session', async (req, res) => {                     //If user save your checkout id then page show...
   let status= false;
   let data= { url: "" };
@@ -98,6 +115,21 @@ router.post('/create-session', async (req, res) => {                     //If us
   res.json({ status , data });
 });
 
+/* ------------------------------------------------------------------------------------------------------------------------ */
+
+/**
+ * If user end checkout session from mercado pago page, then process this section and redirect end page
+ *
+ * @name endok-session
+ * @path {GET} /APIshop/central/endok-session
+ * @query {String} [uid] user id 
+ * @query {Boolean} [ship] if user select ship or not
+ * @query {Boolean} [status] if checkout end correctly
+ * @query {String} [merchant_order_id] check out session id generate for mercado pago API
+ * @query {String} [payment_id] pay process id generate for mercado pago API
+ * @query {String} [preference_id] list of product id generate for mercado pago API
+ * @memberof route/check
+ */
 router.get('/endok-session', async (req, res) => {
   let stats= false;
   let data= "";
@@ -191,6 +223,19 @@ router.get('/endok-session', async (req, res) => {
   res.redirect( stats ? `${IP[0]}/projects/eshop94/pages/cart/resume.html?type=ML&id=${ data }` : `${IP[0]}/projects/eshop94/404.html` );
 });
 
+/* ------------------------------------------------------------------------------------------------------------------------ */
+
+/**
+ * Get all products bought 
+ *
+ * @name resume
+ * @path {GET} /APIshop/central/resume
+ * @query {String} [type] pay library used
+ * @query {String} [id] transaction id 
+ * @memberof route/check
+ * @response {Boolean} status if query database complety successfully
+ * @response {Object} data All Element list, subtotal and total values
+ */
 router.get('/resume', async (req, res) => {
   let status= false;
   let data= {  };
@@ -239,19 +284,6 @@ router.get('/resume', async (req, res) => {
   res.json({ status , data });
 });
 
+/* ------------------------------------------------------------------------------------------------------------------------ */
+
 module.exports = router;
-
-
-(async()=>{
-  //get list product in body.items  maybe body.shipment  
-  //const { body }= await mp.preferences.findById('748655332-b29f46f7-8b3e-4646-832f-59418096dcbf');
-  //console.log( body )
-
-  //get card detail, status pay, total pay, client email info
-  //const { body }= await mp.payment.findById('1236185310');
-  //console.log( body )
-
-  //checkout code....
-  //const algo= await mp.merchant_orders.findById('2594165302');
-  //console.log( algo.body )
-})();

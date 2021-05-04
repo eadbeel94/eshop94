@@ -1,3 +1,5 @@
+/** @namespace route/central */
+
 const { Router } = require("express");
 const router= Router();
 
@@ -5,6 +7,17 @@ const { firestore }= require('firebase-admin');
 const categories= firestore().collection('cats');
 const products= firestore().collection('prods');
 
+/* ------------------------------------------------------------------------------------------------------------------------ */
+
+/**
+ * Get all categorie's names and all product's names
+ *
+ * @name get-same
+ * @path {GET} /APIshop/central/get-same
+ * @response {Boolean} status if query database complety successfully
+ * @response {Object} data All words
+ * @memberof route/central
+ */
 router.get('/get-same', async (req,res)=>{      // common
   let status= false;
   let data;
@@ -25,6 +38,17 @@ router.get('/get-same', async (req,res)=>{      // common
   res.json({ status , data });
 });
 
+/* ------------------------------------------------------------------------------------------------------------------------ */
+
+/**
+ * Get first eigth products with atribute "news" in true
+ *
+ * @name get-news
+ * @path {GET} /APIshop/central/get-news
+ * @response {Boolean} status if query database complety successfully
+ * @response {Object} data Object's list with products
+ * @memberof route/central
+ */
 router.get('/get-news', async (req,res)=>{      //  news
   let status= false;
   let data;
@@ -42,6 +66,18 @@ router.get('/get-news', async (req,res)=>{      //  news
   res.json({ status , data });
 });
 
+/* ------------------------------------------------------------------------------------------------------------------------ */
+
+/**
+ * Get all information about one article
+ *
+ * @name get-article
+ * @path {GET} /APIshop/central/get-article
+ * @query {String} [pid] product id
+ * @response {Boolean} status if query database complety successfully
+ * @response {Object} data All information product
+ * @memberof route/central
+ */
 router.get('/get-article', async (req,res)=>{    //getArticle
   let status= false;
   let data;
@@ -58,6 +94,19 @@ router.get('/get-article', async (req,res)=>{    //getArticle
   res.json({ status , data });
 });
 
+/* ------------------------------------------------------------------------------------------------------------------------ */
+
+/**
+ * Get a list of product based on client search, for word search, type select or pagination select
+ *
+ * @name get-article
+ * @path {GET} /APIshop/central/search-articles
+ * @query {String} [fr] search type, category selection, search word selection or pagination selection
+ * @query {String} [cr] second value complementary first query fr
+ * @response {Boolean} status if query database complety successfully
+ * @response {Object} data All information product founded in this query
+ * @memberof route/central
+ */
 router.get('/search-articles', async (req,res)=>{ //articles
   let status= false;
   let data= { prods: false };
@@ -107,5 +156,7 @@ router.get('/search-articles', async (req,res)=>{ //articles
   } catch (err) { data= err.message; status= false; console.log(100, err); };
   res.json({ status , data });
 });
+
+/* ------------------------------------------------------------------------------------------------------------------------ */
 
 module.exports = router;
