@@ -134,7 +134,7 @@ router.get('/search-articles', async (req,res)=>{ //articles
       if(type == "s"){
         prodSnap= await products.select('mname').get();
         const ids= prodSnap.docs.filter(el => String(el.data().mname).toUpperCase().indexOf(criterio) > -1 ).map( el => el.id );
-        if( ids.length > 0 )
+        if( 10 > ids.length && ids.length > 0 )   //limit IN is 10 elements
           prodSnap= await products.select('purl','cost','mname','ver','clas').where('__name__','in',ids).get();
         else
           prodSnap= [];

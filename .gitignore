@@ -1,6 +1,7 @@
 
 backend/functions/node_modules/
 backend/functions/src/keys/
+backend/functions/keys/
 backend/functions/package-lock.json
 backend/functions/ui-debug.log
 backend/public/

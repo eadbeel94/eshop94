@@ -11,10 +11,11 @@ import '../css/main.scss';
 import '../img/favicon.ico';
 
 import '../img/logo.png';
+import '../img/readme.png';
 import '../img/logo2.png';
-import '../img/banner1.jpg';
-import '../img/banner2.jpg';
-import '../img/banner3.jpg';
-import '../img/banner11.jpg';
-import '../img/banner12.jpg';
-import '../img/banner13.jpg';
+import '../img/banner1.png';
+import '../img/banner2.png';
+import '../img/banner3.png';
+import '../img/bannerA.png';
+import '../img/bannerB.png';
+import '../img/bannerC.png';

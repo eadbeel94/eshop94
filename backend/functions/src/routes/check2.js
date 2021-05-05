@@ -12,7 +12,7 @@ const sales= firestore().collection('sales');
 let access_token= "";
 let IP= ["",""]
 if (process.env.NODE_ENV !== 'production') {
-  const { "test-access_token": atoken }= require('../keys/mercadoKey.json');
+  const { "test-access_token": atoken }= require('../../keys/mercadoKey.json');
   access_token= atoken;
   IP= [`http://localhost:5000`,`http://localhost:5001`,`http://localhost:8080`,];
 }else{

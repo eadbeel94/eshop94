@@ -49,6 +49,16 @@
   color: var(--color2);
 }
 
+#sec_document .text-center{
+  font-size: 40px;
+  font-family: hcomic1;
+  color: var(--bs-gray);
+}
+
+#sec_document .col-12 a{
+  font-size: 30px;
+  font-family: poppins1;
+}
 
 @media (max-width: 1000px) {
   #sec_body7 .col-md-4 img{
