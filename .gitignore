@@ -9,7 +9,16 @@ backend/ui-debug.log
 frontend/node_modules/
 frontend/src/css/bootstrap.css
 frontend/src/font/
-frontend/src/img/
+frontend/src/img/old/
+frontend/src/img/banner1.png
+frontend/src/img/banner2.png
+frontend/src/img/banner3.png
+frontend/src/img/bannerA.png
+frontend/src/img/bannerB.png
+frontend/src/img/bannerC.png
+frontend/src/img/favicon.ico
+frontend/src/img/logo.png
+frontend/src/img/logo2.png
 frontend/src/js/firebase.init.json
 frontend/www
 frontend/www2

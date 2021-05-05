@@ -1,66 +1,44 @@
-# INVENTORY 94
-is a simple Full stack JS project that use vanilla JS without framework in frontend side, into backend side include node js, express js and mongo db.
+# ESHOP 94
+is a simple Full stack JS project that use vanilla JS without framework in frontend side, into backend side include node js, express js and firebase.
 
 This app can do:
-- CRUD Operations
-- Managment user accounts
-- Generate random values to fill forms
+- Search products
+- Filter elements based on category
+- Login google account
+- Sales product
+- Process pay using Mercado Pago API
 
-![](/src/frontend/img/readme.png)
+![](/frontend/src/img/readme.png)
 
-Web page example link: [inventory94](https://inventory94.herokuapp.com/)
-<!--
-# Project documentation structure
-- Frontend (views)
-  - [welcome](/doc/Frontend_02-welcome.html)
-  - [about](/doc/Frontend_03-about.html)
-  - [error](/doc/Frontend_06-error.html)
-  - [unauthorized](/doc/Frontend_07-unauth.html)
-  - [table](/doc/Frontend_11-table.html)
-  - [article](/doc/Frontend_12-article.html)
-  - [options](/doc/Frontend_16-options.html)
-  - [users](/Frontend_17-users.html)
+Web page example link: [Eshop 94](https://myportfolio-94.web.app/projects/eshop94/)
 
-- Frontend (helper)
-  - [service](/doc/Frontend_service.html)
-
-- Backend (routes)
-  - [article](/doc/Backend_route_article.html)
-  - [login](/doc/Backend_route_login.html)
-  - [options](/doc/Backend_route_options.html)
-  - [table](/doc/Backend_route_options.html)
--->
 # Used Technologies
 - Frontend
   - HTML5
-  - CSS/Bootsrap 4
-  - CSS/Fontawesome 5
-  - CSS/Animate
-  - JS/Bootrap native
+  - CSS/Bootsrap 5
   - JS/dayjs
-  - JS/Faker
-  - JS/XLSX
 - Backend
   - NodeJS
   - Express
-  - Mongoose
-  - Passport-local
-  - Bcrypt
+  - Firebase admin
+  - Firebase functions
+  - Firebase firestore
+  - Firabase storage
+  - Firebase auth
+  - Mercado pago SDK
   - Webpack
   - JSdoc
 
 # Links and Resources used in this project
-- [Bootstrap4](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
-- [Fontawesome5](https://fontawesome.com/how-to-use/on-the-web/setup/hosting-font-awesome-yourself)
-- [Animate](https://animate.style/)
-- [Bootstrap Native](https://thednp.github.io/bootstrap.native/)
+- [Bootstrap5](https://getbootstrap.com/docs/5.0/getting-started/introduction)
 - [Day-js (light weight alternative moment.js)](https://day.js.org/)
-- [Faker-js](https://fakercloud.com/api)
-- [Sheet-js](https://sheetjs.com/)
 - [Express-js](https://expressjs.com/)
-- [Mongoose](https://mongoosejs.com/)
-- [Passport](http://www.passportjs.org/)
-- [Bcrypt](https://www.npmjs.com/package/bcrypt)
+- [Firebase Admin](https://firebase.google.com/docs/admin/setup)
+- [Firebase Functions](https://firebase.google.com/docs/functions)
+- [Firebase Firestore](https://firebase.google.com/docs/firestore)
+- [Firebase Storage](https://firebase.google.com/docs/storage)
+- [Firebase Auth](https://firebase.google.com/docs/auth)
+- [Mercado pago SDK](https://www.mercadopago.com.mx/developers/es/guides/sdks#bookmark_nodejs)
 - [Webpack](https://webpack.js.org/)
 
 # About developer
@@ -68,4 +46,3 @@ Web page example link: [inventory94](https://inventory94.herokuapp.com/)
 - [Adbeel Estrada Linkedin](https://www.linkedin.com/in/adbeel-estrada-9a332b181/)
 - [Adbeel Estrada Youtube](https://www.youtube.com/channel/UCKpR_x5WgtNCXx0oE2GuNag)
 - [Adbeel Estrada Facebook](https://www.facebook.com/Z1K3C)
-<!-- [Adbeel Estrada Github](https://github.com/eadbeel94?tab=repositories)-->
